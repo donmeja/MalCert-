@@ -20,7 +20,7 @@ MalCert is a **web-based learning platform** designed to help Malawian students 
 ## 🖥️ Live Demo
 
 Click here to visit MalCert online:  
-[🌐 Visit MalCert](https://donmeja.github.io/malcert/)  
+[🌐 Visit MalCert] (https://donmeja.github.io/MalCert-/)
 
 ---
 

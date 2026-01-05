@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MalCert</title>
+
+    <!-- VERY IMPORTANT: Makes site responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <img src="logo.png" alt="Logo" class="round-img">
+
+        <h1>Welcome To MalCert</h1>
+        <p>Your ultimate MSCE learning platform</p>
+
+        <button id="continueBtn">Continue</button>
+    </div>
+
+    <script>
+        const continueBtn = document.getElementById("continueBtn");
+
+        continueBtn.addEventListener("click", () => {
+            let hasVisited = localStorage.getItem("hasVisited");
+
+            if (!hasVisited) {
+                localStorage.setItem("hasVisited", "true");
+                window.location.href = "signup.html";
+            } else {
+                window.location.href = "login.html";
+            }
+        });
+    </script>
+</body>
+</html>

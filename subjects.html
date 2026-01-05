@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MalCert - Subjects</title>
+
+    <!-- VERY IMPORTANT for responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ff8c00;
+        }
+
+        /* Top bar */
+        .top-bar {
+            background: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        .top-bar h1 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .menu {
+            font-size: 26px;
+            cursor: pointer;
+        }
+
+        /* Dropdown */
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            min-width: 160px;
+            z-index: 10;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 12px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        .dropdown a:hover {
+            background: #f2f2f2;
+        }
+
+        /* Main content */
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 15px;
+        }
+
+        .container p {
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        /* Subjects grid */
+        .subjects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .subject-card {
+            background: white;
+            padding: 20px;
+            border-radius: 14px;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.3);
+        }
+
+        /* Desktop improvement */
+        @media (min-width: 768px) {
+            .top-bar h1 {
+                font-size: 28px;
+            }
+
+            .container p {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    // Protect page
+    if (localStorage.getItem("isLoggedIn") !== "true") {
+        location.replace("signup.html");
+    }
+</script>
+
+<!-- Top bar -->
+<div class="top-bar">
+    <h1>Subjects</h1>
+    <div class="menu" onclick="toggleDropdown()">⋮</div>
+</div>
+
+<!-- Dropdown -->
+<div class="dropdown" id="dropdownMenu">
+    <a href="#" onclick="logout()">Logout</a>
+    <a href="settings.html">Settings</a>
+</div>
+
+<!-- Main -->
+<div class="container">
+    <p>Select a subject to start learning</p>
+
+    <div class="subjects">
+        <div class="subject-card">Additional Mathematics</div>
+        <div class="subject-card">Agriculture</div>
+        <div class="subject-card">Biology</div>
+        <div class="subject-card">Bible Knowledge</div>
+        <div class="subject-card">Business Studies</div>
+        <div class="subject-card">Chemistry</div>
+        <div class="subject-card">Chichewa</div>
+        <div class="subject-card">Computer Studies</div>
+        <div class="subject-card">English</div>
+        <div class="subject-card">Geography</div>
+        <div class="subject-card">History</div>
+        <div class="subject-card">Home Economics</div>
+        <div class="subject-card">Life Skills</div>
+        <div class="subject-card">Mathematics</div>
+        <div class="subject-card">Physics</div>
+        <div class="subject-card">Social Studies</div>
+    </div>
+</div>
+
+<script>
+    function toggleDropdown() {
+        const menu = document.getElementById("dropdownMenu");
+        menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+
+    function logout() {
+        localStorage.clear();
+        location.href = "index.html";
+    }
+</script>
+
+</body>
+</html>

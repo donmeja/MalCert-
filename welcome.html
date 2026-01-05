@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MalCert - Welcome</title>
+
+    <!-- REQUIRED for mobile & desktop responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ff8c00;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+            background: white;
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+            text-align: center;
+        }
+
+        h1 {
+            color: purple;
+            margin-bottom: 10px;
+            font-size: 26px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    // Prevent unauthorized access
+    if (localStorage.getItem("isLoggedIn") !== "true") {
+        location.replace("login.html");
+    }
+</script>
+
+<div class="container">
+    <h1>Welcome, <span id="userName"></span>!</h1>
+    <p>Glad to see you on MalCert.</p>
+</div>
+
+<script>
+    // Display logged-in user's name
+    const userName = localStorage.getItem("studentName");
+    document.getElementById("userName").textContent = userName || "Student";
+
+    // Redirect after 2 seconds
+    setTimeout(() => {
+        window.location.href = "subjects.html";
+    }, 2000);
+</script>
+
+</body>
+</html>

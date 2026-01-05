@@ -1,0 +1,139 @@
+body {
+    background-color: #ff8c00;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.round-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+
+h1 {
+    color: purple;
+    margin: 10px 0;
+}
+
+p {
+    font-size: 18px;
+    margin: 5px 0 20px 0;
+}
+
+button {
+    background-color: blue;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: darkblue;
+}
+@media screen and (max-width: 480px) {
+    
+    .round-img {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 15px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 0 10px;
+    }
+}
+input {
+    width: 100%;
+    max-width: 320px;
+    height: 45px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+#errorMsg {
+    color: red;
+    margin-top: 10px;
+}
+
+#signupBtn {
+    background-color: green;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+#signupBtn:hover {
+    background-color: darkgreen;
+}
+.password-container {
+    position: relative;
+    width: 250px;
+}
+
+.password-container input {
+    width: 100%;
+    max-width: 320px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    opacity: 0.7;
+}
+@media screen and (min-width: 768px) {
+    h1 {
+        font-size: 32px;
+    }
+
+    p {
+        font-size: 20px;
+    }
+
+    button {
+        font-size: 18px;
+        padding: 14px 30px;
+    }
+}

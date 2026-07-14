@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MalCert Admin Upload</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#ff9800;
+}
+
+header{
+    background:#fff;
+    padding:15px;
+    text-align:center;
+    font-size:28px;
+    font-weight:bold;
+    box-shadow:0 2px 5px rgba(0,0,0,.2);
+}
+
+.container{
+    max-width:600px;
+    margin:30px auto;
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+}
+
+select,input[type=file],button{
+    width:100%;
+    padding:15px;
+    margin-top:15px;
+    font-size:16px;
+    border-radius:8px;
+}
+
+button{
+    background:#0066ff;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#004fcc;
+}
+
+#status{
+    margin-top:20px;
+    font-weight:bold;
+    text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<header>MalCert Admin Upload</header>
+
+<div class="container">
+
+<select id="subject">
+<option>Additional Mathematics</option>
+<option>Agriculture</option>
+<option>Biology</option>
+<option>Bible Knowledge</option>
+<option>Business Studies</option>
+<option>Chemistry</option>
+<option>Chichewa</option>
+<option>Computer Studies</option>
+<option>English</option>
+<option>Geography</option>
+<option>History</option>
+<option>Home Economics</option>
+<option>Life Skills</option>
+<option>Mathematics</option>
+<option>Physics</option>
+<option>Social Studies</option>
+</select>
+
+<select id="form">
+<option>Form 3</option>
+<option>Form 4</option>
+</select>
+
+<select id="category">
+<option>Books</option>
+<option>Notes</option>
+<option>Past Papers</option>
+</select>
+
+<input
+    type="file"
+    id="file"
+    accept="application/pdf,.doc,.docx,.ppt,.pptx">
+
+<button onclick="uploadFile()">Upload File</button>
+
+<p id="status"></p>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import {
+getStorage,
+ref,
+uploadBytes
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+
+/* Replace these with your Firebase project details */
+const firebaseConfig={
+apiKey:"YOUR_API_KEY",
+authDomain:"YOUR_AUTH_DOMAIN",
+projectId:"YOUR_PROJECT_ID",
+storageBucket:"YOUR_STORAGE_BUCKET",
+messagingSenderId:"YOUR_MESSAGING_SENDER_ID",
+appId:"YOUR_APP_ID"
+};
+
+const app=initializeApp(firebaseConfig);
+const storage=getStorage(app);
+
+window.uploadFile=async function(){
+
+const subject=document.getElementById("subject").value;
+const form=document.getElementById("form").value;
+const category=document.getElementById("category").value;
+const file=document.getElementById("file").files[0];
+
+if(!file){
+alert("Please choose a file.");
+return;
+}
+
+const path=`uploads/${subject}/${form}/${category}/${file.name}`;
+
+try{
+
+await uploadBytes(ref(storage,path),file);
+
+document.getElementById("status").innerHTML=
+"✅ File uploaded successfully.";
+
+}catch(error){
+
+console.error(error);
+
+document.getElementById("status").innerHTML=
+"❌ Upload failed.";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

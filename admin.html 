@@ -1,42 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>MalCert</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MalCert Admin Login</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
 
-    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <a href="admin.html">
-            <img src="logo.png" alt="MalCert Logo" class="round-img">
-        </a>
+<a href="index.html">
+<img src="logo.png" alt="Logo" class="round-img">
+</a>
 
-        <h1>Welcome To MalCert</h1>
+<h1>Admin Login</h1>
 
-        <p>Your ultimate MSCE learning platform</p>
+<p>Enter the administrator email</p>
 
-        <button id="continueBtn">Continue</button>
+<input
+type="email"
+id="email"
+placeholder="Admin Email">
 
-    </div>
+<button onclick="login()">
+Login
+</button>
 
-    <script>
-        const continueBtn = document.getElementById("continueBtn");
+<p id="errorMsg"></p>
 
-        continueBtn.addEventListener("click", () => {
-            let hasVisited = localStorage.getItem("hasVisited");
+</div>
 
-            if (!hasVisited) {
-                localStorage.setItem("hasVisited", "true");
-                window.location.href = "signup.html";
-            } else {
-                window.location.href = "login.html";
-            }
-        });
-    </script>
+<script>
+
+const adminEmail = "donmejalexaz@gmail.com";
+
+function login(){
+
+const email = document.getElementById("email").value.trim().toLowerCase();
+
+if(email === adminEmail){
+
+localStorage.setItem("adminLoggedIn","true");
+
+window.location.href = "dashboard.html";
+
+}else{
+
+document.getElementById("errorMsg").innerHTML = "Access Denied!";
+
+}
+
+}
+
+</script>
 
 </body>
 </html>

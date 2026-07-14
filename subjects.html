@@ -65,9 +65,9 @@
             padding: 0 15px;
         }
 
-        .container p {
+        .container {
             text-align: center;
-            color: white;
+            color: purple;
             margin-bottom: 20px;
             font-size: 18px;
         }
@@ -130,32 +130,54 @@
 
 <!-- Main -->
 <div class="container">
-    <p>Select a subject to start learning</p>
+    <h1>Select a subject to start learning</h1>
 
     <div class="subjects">
-        <div class="subject-card">Additional Mathematics</div>
-        <div class="subject-card">Agriculture</div>
-        <div class="subject-card">Biology</div>
-        <div class="subject-card">Bible Knowledge</div>
-        <div class="subject-card">Business Studies</div>
-        <div class="subject-card">Chemistry</div>
-        <div class="subject-card">Chichewa</div>
-        <div class="subject-card">Computer Studies</div>
-        <div class="subject-card">English</div>
-        <div class="subject-card">Geography</div>
-        <div class="subject-card">History</div>
-        <div class="subject-card">Home Economics</div>
-        <div class="subject-card">Life Skills</div>
-        <div class="subject-card">Mathematics</div>
-        <div class="subject-card">Physics</div>
-        <div class="subject-card">Social Studies</div>
+
+<div class="subject-card" onclick="openSubject('Additional Mathematics')">Additional Mathematics</div>
+
+<div class="subject-card" onclick="openSubject('Agriculture')">Agriculture</div>
+
+<div class="subject-card" onclick="openSubject('Biology')">Biology</div>
+
+<div class="subject-card" onclick="openSubject('Bible Knowledge')">Bible Knowledge</div>
+
+<div class="subject-card" onclick="openSubject('Business Studies')">Business Studies</div>
+
+<div class="subject-card" onclick="openSubject('Chemistry')">Chemistry</div>
+
+<div class="subject-card" onclick="openSubject('Chichewa')">Chichewa</div>
+
+<div class="subject-card" onclick="openSubject('Computer Studies')">Computer Studies</div>
+
+<div class="subject-card" onclick="openSubject('English')">English</div>
+
+<div class="subject-card" onclick="openSubject('Geography')">Geography</div>
+
+<div class="subject-card" onclick="openSubject('History')">History</div>
+
+<div class="subject-card" onclick="openSubject('Home Economics')">Home Economics</div>
+
+<div class="subject-card" onclick="openSubject('Life Skills')">Life Skills</div>
+
+<div class="subject-card" onclick="openSubject('Mathematics')">Mathematics</div>
+
+<div class="subject-card" onclick="openSubject('Physics')">Physics</div>
+
+<div class="subject-card" onclick="openSubject('Social Studies')">Social Studies</div>
+
     </div>
-</div>
 
 <script>
+    function openSubject(subject) {
+        window.location.href =
+            "subject.html?subject=" + encodeURIComponent(subject);
+    }
+
     function toggleDropdown() {
         const menu = document.getElementById("dropdownMenu");
-        menu.style.display = menu.style.display === "block" ? "none" : "block";
+        menu.style.display =
+            menu.style.display === "block" ? "none" : "block";
     }
 
     function logout() {
@@ -163,6 +185,3 @@
         location.href = "index.html";
     }
 </script>
-
-</body>
-</html>

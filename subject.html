@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MalCert Subject</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#ff8c00;
+}
+
+header{
+    background:white;
+    padding:15px;
+    text-align:center;
+    font-size:28px;
+    font-weight:bold;
+    box-shadow:0 2px 6px rgba(0,0,0,.2);
+}
+
+.container{
+    padding:20px;
+    max-width:700px;
+    margin:auto;
+}
+
+select,button{
+    width:100%;
+    padding:15px;
+    margin-top:15px;
+    font-size:18px;
+    border:none;
+    border-radius:10px;
+}
+
+button{
+    background: blue;
+    color:white;
+    cursor:pointer;
+}
+
+button:hover{
+    background: blue;
+}
+
+.back{
+    background: purple;
+}
+
+.file{
+    background:white;
+    margin-top:15px;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 2px 6px rgba(0,0,0,.2);
+}
+
+.file h3{
+    margin-top:0;
+}
+
+.file a{
+    color: blue;
+    text-decoration:none;
+    font-weight:bold;
+}
+</style>
+
+</head>
+
+<body>
+
+<header id="subjectTitle">Loading...</header>
+
+<div class="container">
+
+<select id="level">
+<option>Form 3</option>
+<option>Form 4</option>
+</select>
+
+<select id="category">
+<option>Books</option>
+<option>Notes</option>
+<option>Past Papers</option>
+</select>
+
+<button onclick="loadFiles()">Load Files</button>
+
+<button class="back" onclick="history.back()">← Back to Subjects</button>
+
+<div id="files"></div>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+
+/* Replace with your Firebase configuration */
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+};
+
+const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
+
+/* Get subject from URL */
+const params = new URLSearchParams(window.location.search);
+const subject = params.get("subject");
+
+document.getElementById("subjectTitle").textContent =
+subject ? subject : "Subject";
+
+window.loadFiles = async function(){
+
+    if(!subject){
+        alert("No subject selected.");
+        return;
+    }
+
+    const level = document.getElementById("level").value;
+    const category = document.getElementById("category").value;
+
+    const folder = `uploads/${subject}/${level}/${category}`;
+
+    const filesDiv = document.getElementById("files");
+    filesDiv.innerHTML = "<p>Loading files...</p>";
+
+    try{
+
+        const result = await listAll(ref(storage, folder));
+
+        filesDiv.innerHTML = "";
+
+        if(result.items.length===0){
+            filesDiv.innerHTML="<h3>No files available.</h3>";
+            return;
+        }
+
+        for(const file of result.items){
+
+            const url = await getDownloadURL(file);
+
+            filesDiv.innerHTML += `
+            <div class="file">
+                <h3>${file.name}</h3>
+                <a href="${url}" target="_blank">📄 Open / Download</a>
+            </div>
+            `;
+        }
+
+    }catch(error){
+
+        console.error(error);
+
+        filesDiv.innerHTML=
+        "<h3>Unable to load files. Check your Firebase configuration and Storage folder.</h3>";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>

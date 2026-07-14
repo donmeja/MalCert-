@@ -23,5 +23,3 @@ Click here to visit MalCert online:
 (https://donmeja.github.io/MalCert-/)
 
 ---
-
-## 📂 Project Structure

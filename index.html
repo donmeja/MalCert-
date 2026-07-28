@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MalCert</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+            <img src="logo.png" alt="MalCert Logo" class="round-img">
+        </>
+
+        <h1>Welcome To MalCert</h1>
+
+        <p>Your ultimate MSCE learning platform</p>
+
+        <button id="continueBtn">Continue</button>
+
+    </div>
+
+    <script>
+        const continueBtn = document.getElementById("continueBtn");
+
+        continueBtn.addEventListener("click", () => {
+            let hasVisited = localStorage.getItem("hasVisited");
+
+            if (!hasVisited) {
+                localStorage.setItem("hasVisited", "true");
+                window.location.href = "signup.html";
+            } else {
+                window.location.href = "login.html";
+            }
+        });
+    </script>
+
+    <footer>
+    <div class="contact">
+        <h3>Contact Us</h3>
+        <p>Email: MalCert.mw@gmail.com</p>
+    </div>
+
+    <p>© 2026 MalCert. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

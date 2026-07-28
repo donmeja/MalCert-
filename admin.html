@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MalCert Admin Login</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="index.html">
+<img src="logo.png" alt="Logo" class="round-img">
+</a>
+
+<h1>Admin Login</h1>
+
+<p>Enter the administrator email</p>
+
+<input
+type="email"
+id="email"
+placeholder="Admin Email">
+
+<button onclick="login()">
+Login
+</button>
+
+<p id="errorMsg"></p>
+
+</div>
+
+<script>
+
+const adminEmail = "donmejalexaz@gmail.com";
+
+function login(){
+
+const email = document.getElementById("email").value.trim().toLowerCase();
+
+if(email === adminEmail){
+
+localStorage.setItem("adminLoggedIn","true");
+
+window.location.href = "dashboard.html";
+
+}else{
+
+document.getElementById("errorMsg").innerHTML = "Access Denied!";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

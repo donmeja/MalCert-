@@ -18,6 +18,35 @@
             align-items: center;
             min-height: 100vh;
         }
+      /* Back Button */
+        .back-button{
+    position:fixed;
+    top:15px;
+    left:15px;
+    color:black;
+    text-decoration:none;
+    font-size:34px;
+    font-weight:bold;
+    font-weight:bold;
+    z-index:1000;
+
+    background:transparent;
+    border:none;
+    outline:none;
+    box-shadow:none;
+
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}
+
+.back-button:hover,
+.back-button:focus,
+.back-button:active{
+    background:transparent !important;
+    outline:none;
+    box-shadow:none;
+    color:black;
+}
 
         .container {
             width: 100%;
@@ -109,6 +138,7 @@
     </style>
 </head>
 <body>
+  <a href="javascript:history.back()" class="back-button">&#8592;</a>
 
     <div class="container">
         <h1>Create Your Account</h1>
@@ -130,39 +160,85 @@
 
     <script>
         // Toggle password visibility
-        const passwordInput = document.getElementById("password");
-        const togglePassword = document.querySelector(".toggle-password");
+const passwordInput = document.getElementById("password");
+const togglePassword = document.querySelector(".toggle-password");
 
-        togglePassword.addEventListener("click", () => {
-            passwordInput.type =
-                passwordInput.type === "password" ? "text" : "password";
-        });
+togglePassword.addEventListener("click", () => {
+    passwordInput.type =
+        passwordInput.type === "password" ? "text" : "password";
+});
 
-        // Sign Up logic
-        document.getElementById("signupBtn").addEventListener("click", () => {
-            const name = document.getElementById("name").value.trim();
-            const email = document.getElementById("email").value.trim();
-            const password = document.getElementById("password").value;
+// Sign Up
+document.getElementById("signupBtn").addEventListener("click", () => {
 
-            if (!name || !email || !password) {
-                document.getElementById("errorMsg").textContent =
-                    "Please fill all fields!";
-                return;
-            }
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const errorMsg = document.getElementById("errorMsg");
 
-            let users = JSON.parse(localStorage.getItem("users")) || [];
+    errorMsg.textContent = "";
 
-            if (users.some(u => u.email === email)) {
-                document.getElementById("errorMsg").textContent =
-                    "Email already exists. Please login.";
-                return;
-            }
+    if (!name || !email || !password) {
+        errorMsg.textContent = "Please fill all fields.";
+        return;
+    }
 
-            users.push({ name, email, password });
-            localStorage.setItem("users", JSON.stringify(users));
+    // Email validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-            window.location.href = "login.html";
-        });
+    if (!emailPattern.test(email)) {
+        errorMsg.textContent = "Please enter a valid email address.";
+        return;
+    }
+
+    // Password validation
+    if (password.length < 8) {
+        errorMsg.textContent = "Password must be at least 8 characters.";
+        return;
+    }
+
+    if (!/[A-Z]/.test(password)) {
+        errorMsg.textContent = "Password must contain at least one uppercase letter.";
+        return;
+    }
+
+    if (!/[a-z]/.test(password)) {
+        errorMsg.textContent = "Password must contain at least one lowercase letter.";
+        return;
+    }
+
+    if (!/[0-9]/.test(password)) {
+        errorMsg.textContent = "Password must contain at least one number.";
+        return;
+    }
+
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+        errorMsg.textContent = "Password must contain at least one special character.";
+        return;
+    }
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    if (users.some(user => user.email.toLowerCase() === email.toLowerCase())) {
+        errorMsg.textContent = "Email already exists. Please login.";
+        return;
+    }
+
+   users.push({
+    name,
+    email,
+    password
+});
+
+localStorage.setItem("users", JSON.stringify(users));
+
+// Automatically log the user in
+localStorage.setItem("isLoggedIn", "true");
+localStorage.setItem("studentName", name);
+localStorage.setItem("studentEmail", email);
+
+window.location.href = "welcome.html"; 
+});
     </script>
 
 </body>

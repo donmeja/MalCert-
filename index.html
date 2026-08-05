@@ -1,49 +1,394 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>MalCert</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MalCert Dashboard</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
 </head>
+
 <body>
 
-    <div class="container">
-            <img src="logo.png" alt="MalCert Logo" class="round-img">
-        </>
+<div class="dashboard">
 
-        <h1>Welcome To MalCert</h1>
+    <!-- Sidebar -->
+    <aside class="sidebar">
 
-        <p>Your ultimate MSCE learning platform</p>
+        <div class="logo">
+            <div class="logo-icon">M</div>
 
-        <button id="continueBtn">Continue</button>
+            <div>
+                <h2>MalCert</h2>
+                <span>Malawi Certificate Registry</span>
+            </div>
+        </div>
 
-    </div>
+        <nav>
 
-    <script>
-        const continueBtn = document.getElementById("continueBtn");
+            <a class="active">
+                <i class="fas fa-house"></i>
+                Dashboard
+            </a>
 
-        continueBtn.addEventListener("click", () => {
-            let hasVisited = localStorage.getItem("hasVisited");
+            <a>
+                <i class="fas fa-book"></i>
+                Digital Library
+            </a>
 
-            if (!hasVisited) {
-                localStorage.setItem("hasVisited", "true");
-                window.location.href = "signup.html";
-            } else {
-                window.location.href = "login.html";
-            }
-        });
-    </script>
+            <a>
+                <i class="fas fa-file-lines"></i>
+                Past Papers
+            </a>
 
-    <footer>
-    <div class="contact">
-        <h3>Contact Us</h3>
-        <p>Email: MalCert.mw@gmail.com</p>
-    </div>
+            <a>
+                <i class="fas fa-note-sticky"></i>
+                Study Notes
+            </a>
 
-    <p>© 2026 MalCert. All Rights Reserved.</p>
-    </footer>
+            <a>
+                <i class="fas fa-download"></i>
+                Downloads
+            </a>
+
+            <a>
+                <i class="fas fa-certificate"></i>
+                My Certificates
+            </a>
+
+            <a>
+                <i class="fas fa-gear"></i>
+                Settings
+            </a>
+
+            <a id="logoutBtn">
+                <i class="fas fa-right-from-bracket"></i>
+                Logout
+            </a>
+
+        </nav>
+
+        <div class="countdown-card">
+
+            <h4>Exam Countdown</h4>
+
+            <h2 id="daysLeft">42 Days</h2>
+
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+
+        </div>
+
+    </aside>
+
+    <!-- Main Content -->
+
+    <main class="main-content">
+
+        <!-- Top Bar -->
+
+        <header>
+
+            <div class="search-box">
+
+                <i class="fas fa-search"></i>
+
+                <input
+                type="text"
+                placeholder="Search papers, books and notes..."
+                id="search">
+
+            </div>
+
+            <div class="profile">
+
+                <div class="notification">
+
+                    <i class="fas fa-bell"></i>
+
+                    <span class="badge">3</span>
+
+                </div>
+
+                <div class="user">
+
+                    <div class="avatar">
+                        A
+                    </div>
+
+                    <div>
+
+                        <h4 id="studentName">Alex</h4>
+
+                        <small>MSCE Candidate</small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- Welcome Banner -->
+
+        <section class="welcome">
+
+            <div>
+
+                <h1>
+                    Welcome Back,
+                    <span id="welcomeName">Alex</span>
+                </h1>
+
+                <p>
+                    Continue preparing for your MSCE examinations with
+                    MalCert Digital Library.
+                </p>
+
+                <button class="primary-btn">
+
+                    Continue Learning
+
+                </button>
+
+            </div>
+
+            <img
+            src="images/student.png"
+            alt="Student">
+
+        </section>
+
+        <!-- Statistics -->
+
+        <section class="stats">
+
+            <div class="card">
+
+                <i class="fas fa-book-open"></i>
+
+                <h2>2,450</h2>
+
+                <p>Past Papers</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fas fa-note-sticky"></i>
+
+                <h2>842</h2>
+
+                <p>Study Notes</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fas fa-users"></i>
+
+                <h2>15k</h2>
+
+                <p>Students</p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fas fa-download"></i>
+
+                <h2>1,200</h2>
+
+                <p>Downloads</p>
+
+            </div>
+
+        </section>
+
+        <!-- Subjects -->
+
+        <section>
+
+            <div class="section-title">
+
+                <h2>Popular Subjects</h2>
+
+                <a href="#">View All</a>
+
+            </div>
+
+            <div class="subjects">
+
+                <div class="subject-card">
+                    <h3>Mathematics</h3>
+                    <p>64 Books</p>
+                    <button>Open</button>
+                </div>
+
+                <div class="subject-card">
+                    <h3>Biology</h3>
+                    <p>52 Books</p>
+                    <button>Open</button>
+                </div>
+
+                <div class="subject-card">
+                    <h3>English</h3>
+                    <p>40 Books</p>
+                    <button>Open</button>
+                </div>
+
+                <div class="subject-card">
+                    <h3>Chemistry</h3>
+                    <p>35 Books</p>
+                    <button>Open</button>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Recent Uploads -->
+
+        <section>
+
+            <div class="section-title">
+
+                <h2>Latest Uploads</h2>
+
+            </div>
+
+            <div class="uploads">
+
+                <div class="upload-item">
+
+                    <div>
+
+                        <h4>Biology Notes Form 4</h4>
+
+                        <small>Uploaded Today</small>
+
+                    </div>
+
+                    <button>
+
+                        Download
+
+                    </button>
+
+                </div>
+
+                <div class="upload-item">
+
+                    <div>
+
+                        <h4>Mathematics Paper 2</h4>
+
+                        <small>Yesterday</small>
+
+                    </div>
+
+                    <button>
+
+                        View
+
+                    </button>
+
+                </div>
+
+                <div class="upload-item">
+
+                    <div>
+
+                        <h4>English Grammar Notes</h4>
+
+                        <small>3 Days Ago</small>
+
+                    </div>
+
+                    <button>
+
+                        Download
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Right Sidebar -->
+
+    <aside class="right-panel">
+
+        <div class="progress-card">
+
+            <h3>Learning Progress</h3>
+
+            <div class="circle">
+
+                <span>72%</span>
+
+            </div>
+
+            <p>
+                Great work!
+                Keep learning.
+            </p>
+
+        </div>
+
+        <div class="activity-card">
+
+            <h3>Recent Activity</h3>
+
+            <ul>
+
+                <li>✔ Downloaded Biology Notes</li>
+
+                <li>✔ Viewed Mathematics Paper</li>
+
+                <li>✔ Completed English Quiz</li>
+
+                <li>✔ Updated Profile</li>
+
+            </ul>
+
+        </div>
+
+        <div class="notice-card">
+
+            <h3>MANEB Notice</h3>
+
+            <p>
+                MSCE Registration closes
+                next month.
+            </p>
+
+            <button>
+
+                Learn More
+
+            </button>
+
+        </div>
+
+    </aside>
+
+</div>
+
+<script src="script.js"></script>
+<script type="module" src="firebase.js"></script>
 
 </body>
 </html>

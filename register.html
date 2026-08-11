@@ -1,0 +1,303 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Register | MalCert</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+<link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    rel="stylesheet">
+
+</head><body class="auth-page"><div class="auth-container">
+
+    <div class="auth-card">
+
+        <!-- ==========================
+             LOGO
+        =========================== -->
+
+        <div class="auth-logo">
+
+            <a href="login.html">
+
+                <img
+                    src="logo.png"
+                    class="round-img"
+                >
+
+            </a>
+
+            <h1>MalCert</h1>
+
+            <p>MSCE Learning Platform</p>
+
+        </div>
+
+
+        <!-- ==========================
+             TITLE
+        =========================== -->
+
+        <div class="auth-title">
+
+            <h2>Create Account</h2>
+
+            <p>
+                Create your MalCert student account.
+            </p>
+
+        </div>
+
+
+        <!-- ==========================
+             PROFILE PICTURE
+        =========================== -->
+
+        <div class="profile-picture-register">
+
+            <div class="register-profile-preview">
+
+                <img
+                    id="profilePreview"
+                    src="logo.png"
+                    alt="Profile Picture"
+                >
+
+                <div
+                    id="profilePlaceholder"
+                    class="profile-placeholder"
+                >
+
+                    <i class="fas fa-user"></i>
+
+                </div>
+
+            </div>
+
+
+            <label
+                for="profilePicture"
+                class="profile-picture-button"
+            >
+
+                <i class="fas fa-camera"></i>
+
+                Add Profile Picture
+
+            </label>
+
+
+            <input
+                type="file"
+                id="profilePicture"
+                accept="image/*"
+                capture="user"
+                hidden
+            >
+
+
+            <small>
+                Choose a picture from your camera,
+                gallery or phone storage.
+            </small>
+
+        </div>
+
+
+        <!-- ==========================
+             REGISTER FORM
+        =========================== -->
+
+        <form id="registerForm">
+
+
+            <!-- FULL NAME -->
+
+            <div class="input-group">
+
+                <label for="registerName">
+                    Full Name
+                </label>
+
+                <div class="auth-input">
+
+                    <i class="fas fa-user"></i>
+
+                    <input
+                        type="text"
+                        id="registerName"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="input-group">
+
+                <label for="registerEmail">
+                    Email Address
+                </label>
+
+                <div class="auth-input">
+
+                    <i class="fas fa-envelope"></i>
+
+                    <input
+                        type="email"
+                        id="registerEmail"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="input-group">
+
+                <label for="registerPassword">
+                    Password
+                </label>
+
+                <div class="auth-input">
+
+                    <i class="fas fa-lock"></i>
+
+                    <input
+                        type="password"
+                        id="registerPassword"
+                        placeholder="Create a password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        onclick="togglePassword(
+                            'registerPassword',
+                            this
+                        )"
+                    >
+
+                        <i class="fas fa-eye"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONFIRM PASSWORD -->
+
+            <div class="input-group">
+
+                <label for="confirmPassword">
+                    Confirm Password
+                </label>
+
+                <div class="auth-input">
+
+                    <i class="fas fa-lock"></i>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Confirm your password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        onclick="togglePassword(
+                            'confirmPassword',
+                            this
+                        )"
+                    >
+
+                        <i class="fas fa-eye"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- MESSAGE -->
+
+            <div
+                id="registerMessage"
+                class="auth-message"
+            ></div>
+
+
+            <!-- CREATE ACCOUNT -->
+
+            <button
+                type="submit"
+                class="auth-button"
+            >
+
+                <i class="fas fa-user-plus"></i>
+
+                Create Account
+
+            </button>
+
+
+        </form>
+
+
+        <!-- ==========================
+             LOGIN
+        =========================== -->
+
+        <div class="auth-footer">
+
+            <p>
+
+                Already have an account?
+
+                <a href="login.html">
+                    Login
+                </a>
+
+            </p>
+
+        </div>
+
+
+        <div class="demo-notice">
+
+            <i class="fas fa-circle-info"></i>
+
+            <span>
+                Your profile picture is stored locally
+                for now. Firebase Storage will be connected later.
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body></html>

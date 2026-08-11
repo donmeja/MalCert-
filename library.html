@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MalCert Digital Library</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+
+<div class="dashboard">
+
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar">
+
+
+<div class="logo">
+
+<a href="index.html">
+
+<img src="logo.png" class="round-img">
+
+</a>
+
+<h2>MalCert</h2>
+
+</div>
+
+
+
+<nav>
+
+
+<a href="index.html">
+
+<i class="fas fa-house"></i>
+
+Dashboard
+
+</a>
+
+
+
+<a href="library.html" class="active">
+
+<i class="fas fa-book"></i>
+
+Digital Library
+
+</a>
+
+
+
+<a href="study-notes.html">
+
+<i class="fas fa-note-sticky"></i>
+
+Study Notes
+
+</a>
+
+
+
+<a href="#">
+
+<i class="fas fa-file-lines"></i>
+
+Past Papers
+
+</a>
+
+
+
+<a href="#">
+
+<i class="fas fa-gear"></i>
+
+Settings
+
+</a>
+
+
+
+<a href="#">
+
+<i class="fas fa-right-from-bracket"></i>
+
+Logout
+
+</a>
+
+
+</nav>
+
+
+</aside>
+
+
+
+<!-- ================= MAIN CONTENT ================= -->
+
+<main class="main-content">
+
+
+
+<header>
+
+
+<div class="search-box">
+
+<i class="fas fa-search"></i>
+
+<input
+type="text"
+id="bookSearch"
+placeholder="Search books..."
+onkeyup="searchBooks()"
+>
+
+</div>
+
+
+
+<div class="profile">
+
+
+<div class="notification">
+
+<i class="fas fa-bell"></i>
+
+<span class="badge">3</span>
+
+</div>
+
+
+
+<div class="user">
+
+
+<div class="avatar">
+
+A
+
+</div>
+
+
+
+<div>
+
+<h4>Alex Meja</h4>
+
+<small>MSCE Candidate</small>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</header>
+
+
+
+<!-- PAGE TITLE -->
+
+<div class="section-title">
+
+<h2>Digital Library</h2>
+
+</div>
+
+
+
+<!-- ================= SELECT CLASS ================= -->
+
+<div class="card">
+
+<h3>Select Class</h3>
+
+
+<div class="class-selection">
+
+
+<button
+class="class-btn"
+onclick="showForm('Form 3')"
+>
+
+Form 3
+
+</button>
+
+
+
+<button
+class="class-btn"
+onclick="showForm('Form 4')"
+>
+
+Form 4
+
+</button>
+
+
+</div>
+
+</div>
+
+
+
+<!-- ================= SUBJECTS ================= -->
+
+<div class="section-title">
+
+<h2 id="formTitle">
+
+Subjects
+
+</h2>
+
+</div>
+
+
+
+<div
+class="library-subjects"
+id="subjects"
+>
+
+</div>
+
+
+
+<!-- ================= BOOKS ================= -->
+
+<div
+id="booksSection"
+style="display:none;"
+>
+
+
+<div class="section-title">
+
+<h2 id="subjectTitle">
+
+Available Books
+
+</h2>
+
+</div>
+
+
+
+<div
+class="library-books"
+id="books"
+>
+
+</div>
+
+
+</div>
+
+
+
+</main>
+
+<!-- ==================================================
+         RIGHT PANEL
+    ================================================== -->
+
+    <aside class="right-panel">
+
+
+        <!-- ==================================================
+     EXAM COUNTDOWN
+================================================== -->
+      <a 
+          href="exam-countdown.html"
+          class="dashboard-feature-card">
+
+          <div class="feature-icon exam-icon">
+
+    <i class="fas fa-calendar-days"></i>
+
+</div>
+
+<div class="feature-content">
+
+    <small>
+        MSCE EXAMINATION
+    </small>
+
+    <h3>
+        Exam Countdown
+    </h3>
+
+    <p>
+        View the countdown to the
+        MSCE examinations.
+    </p>
+
+</div>
+
+<div class="feature-arrow">
+
+    <i class="fas fa-arrow-right"></i>
+
+</div>
+
+</a>
+
+
+
+        <!-- ==================================================
+             SYLLABUS & CHIEF EXAMINER REPORTS
+        ================================================== -->
+
+        <a
+            href="resources.html"
+            class="dashboard-feature-card"
+        >
+
+            <div class="feature-icon syllabus-icon">
+
+                <i class="fas fa-file-circle-check"></i>
+
+            </div>
+
+
+            <div class="feature-content">
+
+                <small>
+                    EXAM RESOURCES
+                </small>
+
+                <h3>
+                    Syllabus & Chief Examiner Reports
+                </h3>
+
+                <p>
+                    Access subject syllabuses and
+                    Chief Examiner reports.
+                </p>
+
+            </div>
+
+
+            <div class="feature-arrow">
+
+                <i class="fas fa-arrow-right"></i>
+
+            </div>
+
+        </a>
+
+
+
+        <!-- ==================================================
+             MALCERT AI
+        ================================================== -->
+
+        <a
+            href="malcert-ai.html"
+            class="dashboard-feature-card"
+        >
+
+            <div class="feature-icon ai-icon">
+
+                <i class="fas fa-robot"></i>
+
+            </div>
+
+
+            <div class="feature-content">
+
+                <small>
+                    AI STUDY ASSISTANT
+                </small>
+
+                <h3>
+                    MalCert AI
+                </h3>
+
+                <p>
+                    Ask questions and get help
+                    with your MSCE studies.
+                </p>
+
+            </div>
+
+
+            <div class="feature-arrow">
+
+                <i class="fas fa-arrow-right"></i>
+
+            </div>
+
+        </a>
+
+
+
+        <!-- ==================================================
+             STUDY GROUP
+        ================================================== -->
+
+        <a
+            href="study-group.html"
+            class="dashboard-feature-card"
+        >
+
+            <div class="feature-icon group-icon">
+
+                <i class="fas fa-users"></i>
+
+            </div>
+
+
+            <div class="feature-content">
+
+                <small>
+                    STUDENT COMMUNITY
+                </small>
+
+                <h3>
+                    Study Group
+                </h3>
+
+                <p>
+                    Discuss, ask questions and
+                    learn with other students.
+                </p>
+
+            </div>
+
+
+            <div class="feature-arrow">
+
+                <i class="fas fa-arrow-right"></i>
+
+            </div>
+
+        </a>
+
+
+    </aside>
+    <!-- END RIGHT PANEL -->
+
+
+
+<script src="script.js"></script>
+
+
+
+<script>
+
+
+/* =====================================================
+   DIGITAL LIBRARY DATA
+
+   Later this data will come from Firebase.
+   ===================================================== */
+
+
+const libraryData = {
+
+
+/* ================= FORM 3 ================= */
+
+"Form 3": {
+
+
+"Additional Mathematics": [
+
+{
+title: "Additional Mathematics Form 3",
+description: "Additional Mathematics textbook for Form 3",
+type: "PDF"
+},
+
+{
+title: "Additional Mathematics Revision Guide",
+description: "Form 3 revision material",
+type: "PDF"
+}
+
+],
+
+
+
+"Agriculture": [
+
+{
+title: "Agriculture Form 3",
+description: "Agriculture textbook for Form 3",
+type: "PDF"
+},
+
+{
+title: "Agriculture Revision Guide",
+description: "Form 3 Agriculture revision material",
+type: "PDF"
+}
+
+],
+
+
+
+"Biology": [
+
+{
+title: "Biology Form 3",
+description: "Biology textbook for Form 3",
+type: "PDF"
+},
+
+{
+title: "Biology Revision Guide",
+description: "Form 3 Biology revision material",
+type: "PDF"
+}
+
+],
+
+
+
+"Chemistry": [
+
+{
+title: "Chemistry Form 3",
+description: "Chemistry textbook for Form 3",
+type: "PDF"
+}
+
+],
+
+
+
+"Physics": [
+
+{
+title: "Physics Form 3",
+description: "Physics textbook for Form 3",
+type: "PDF"
+}
+
+]
+
+},
+
+
+
+/* ================= FORM 4 ================= */
+
+"Form 4": {
+
+
+"Additional Mathematics": [
+
+{
+title: "Additional Mathematics Form 4",
+description: "Additional Mathematics textbook for Form 4",
+type: "PDF"
+},
+
+{
+title: "Additional Mathematics Revision Guide",
+description: "Form 4 revision material",
+type: "PDF"
+}
+
+],
+
+
+
+"Agriculture": [
+
+{
+title: "Agriculture Form 4",
+description: "Agriculture textbook for Form 4",
+type: "PDF"
+},
+
+{
+title: "Agriculture Revision Guide",
+description: "Form 4 Agriculture revision material",
+type: "PDF"
+}
+
+],
+
+
+
+"Biology": [
+
+{
+title: "Biology Form 4",
+description: "Biology textbook for Form 4",
+type: "PDF"
+},
+
+{
+title: "Biology Revision Guide",
+description: "Form 4 Biology revision material",
+type: "PDF"
+}
+
+],
+
+
+
+"Chemistry": [
+
+{
+title: "Chemistry Form 4",
+description: "Chemistry textbook for Form 4",
+type: "PDF"
+}
+
+],
+
+
+
+"Physics": [
+
+{
+title: "Physics Form 4",
+description: "Physics textbook for Form 4",
+type: "PDF"
+}
+
+]
+
+}
+
+};
+
+
+
+/* =====================================================
+   SHOW SELECTED FORM
+   ===================================================== */
+
+
+function showForm(form) {
+
+
+/* Change heading */
+
+document.getElementById("formTitle").innerHTML =
+form + " Subjects";
+
+
+
+/* Get subject container */
+
+let subjectBox =
+document.getElementById("subjects");
+
+
+subjectBox.innerHTML = "";
+
+
+
+/* Hide books until subject is selected */
+
+document.getElementById("booksSection")
+.style.display = "none";
+
+
+
+/* Display subjects */
+
+Object.keys(libraryData[form]).forEach(subject => {
+
+
+subjectBox.innerHTML += `
+
+<div
+class="library-subject-card"
+onclick="showBooks('${form}', '${subject}')"
+>
+
+<div class="subject-icon">
+
+<i class="fas fa-book"></i>
+
+</div>
+
+
+<h3>
+
+${subject}
+
+</h3>
+
+
+<p>
+
+View Books
+
+</p>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+
+/* =====================================================
+   SHOW BOOKS FOR SUBJECT
+   ===================================================== */
+
+
+function showBooks(form, subject) {
+
+
+/* Show book section */
+
+document.getElementById("booksSection")
+.style.display = "block";
+
+
+
+/* Change heading */
+
+document.getElementById("subjectTitle").innerHTML =
+
+subject + " — Available Books";
+
+
+
+/* Get book container */
+
+let bookBox =
+document.getElementById("books");
+
+
+bookBox.innerHTML = "";
+
+
+
+/* Get books */
+
+const books =
+libraryData[form][subject];
+
+
+
+/* Check if books exist */
+
+if (!books || books.length === 0) {
+
+
+bookBox.innerHTML = `
+
+<div class="empty-library">
+
+<i class="fas fa-book-open"></i>
+
+<h3>No Books Available</h3>
+
+<p>
+
+There are currently no books uploaded for
+${subject}.
+
+</p>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+
+/* Display every book */
+
+books.forEach((book, index) => {
+
+
+bookBox.innerHTML += `
+
+<div
+class="library-book-card"
+data-book="${book.title.toLowerCase()}"
+>
+
+
+<div class="book-icon">
+
+<i class="fas fa-file-pdf"></i>
+
+</div>
+
+
+
+<div class="book-info">
+
+<h3>
+
+${book.title}
+
+</h3>
+
+
+<p>
+
+${book.description}
+
+</p>
+
+
+<span class="book-type">
+
+<i class="fas fa-file-pdf"></i>
+
+${book.type}
+
+</span>
+
+</div>
+
+
+
+<div class="book-actions">
+
+
+<button
+class="view-book-btn"
+onclick="viewBook('${form}', '${subject}', '${book.title}')"
+>
+
+<i class="fas fa-eye"></i>
+
+View
+
+</button>
+
+
+
+<button
+class="download-book-btn"
+onclick="downloadBook('${form}', '${subject}', '${book.title}')"
+>
+
+<i class="fas fa-download"></i>
+
+Download
+
+</button>
+
+
+</div>
+
+
+</div>
+
+`;
+
+});
+
+
+
+/* Scroll to books */
+
+document.getElementById("booksSection")
+.scrollIntoView({
+
+behavior: "smooth",
+
+block: "start"
+
+});
+
+}
+
+
+
+/* =====================================================
+   VIEW BOOK
+   ===================================================== */
+
+
+function viewBook(form, subject, book) {
+
+
+alert(
+
+"Book: " + book +
+
+"\n\nClass: " + form +
+
+"\nSubject: " + subject +
+
+"\n\nThe PDF/document will be opened from Firebase."
+
+);
+
+}
+
+
+
+/* =====================================================
+   DOWNLOAD BOOK
+   ===================================================== */
+
+
+function downloadBook(form, subject, book) {
+
+
+alert(
+
+"Download requested\n\n" +
+
+book +
+
+"\n\nThe document will be downloaded from Firebase once the library is connected."
+
+);
+
+}
+
+
+
+/* =====================================================
+   SEARCH BOOKS
+   ===================================================== */
+
+
+function searchBooks() {
+
+
+let search =
+document.getElementById("bookSearch")
+.value
+.toLowerCase();
+
+
+
+let books =
+document.querySelectorAll(".library-book-card");
+
+
+
+books.forEach(book => {
+
+
+let title =
+book.getAttribute("data-book");
+
+
+
+if (title.includes(search)) {
+
+book.style.display = "flex";
+
+} else {
+
+book.style.display = "none";
+
+}
+
+});
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>MalCert Students</title>
+
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        rel="stylesheet"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="dashboard">
+
+
+    <!-- ==================================================
+         SIDEBAR
+    ================================================== -->
+
+    <aside class="sidebar">
+
+
+        <div class="logo">
+
+            <a href="index.html">
+
+                <img
+                    src="logo.png"
+                    alt="MalCert Logo"
+                    class="round-img"
+                >
+
+            </a>
+
+            <h2>
+                MalCert
+            </h2>
+
+        </div>
+
+
+        <nav>
+
+
+            <a href="index.html">
+
+                <i class="fas fa-house"></i>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a href="library.html">
+
+                <i class="fas fa-book"></i>
+
+                <span>
+                    Digital Library
+                </span>
+
+            </a>
+
+
+            <a href="study-notes.html">
+
+                <i class="fas fa-note-sticky"></i>
+
+                <span>
+                    Study Notes
+                </span>
+
+            </a>
+
+
+            <a href="past-papers.html">
+
+                <i class="fas fa-file-lines"></i>
+
+                <span>
+                    Past Papers
+                </span>
+
+            </a>
+
+
+            <a
+                href="students.html"
+                class="active"
+            >
+
+                <i class="fas fa-users"></i>
+
+                <span>
+                    Study group
+                </span>
+
+            </a>
+
+
+            <a href="settings.html">
+
+                <i class="fas fa-gear"></i>
+
+                <span>
+                    Settings
+                </span>
+
+            </a>
+
+
+            <a
+                href="#"
+                id="logoutBtn"
+            >
+
+                <i class="fas fa-right-from-bracket"></i>
+
+                <span>
+                    Logout
+                </span>
+
+            </a>
+
+
+        </nav>
+
+    </aside>
+
+
+    <!-- ==================================================
+         MAIN CONTENT
+    ================================================== -->
+
+    <main class="main-content">
+
+
+        <header>
+
+
+            <div class="search-box">
+
+                <i class="fas fa-search"></i>
+
+                <input
+                    type="text"
+                    id="studentSearch"
+                    placeholder="Search students..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <div class="profile">
+
+                <div class="notification">
+
+                    <i class="fas fa-bell"></i>
+
+                    <span class="badge">
+                        3
+                    </span>
+
+                </div>
+
+
+                <div class="user">
+
+                    <div
+                        class="avatar"
+                        id="avatar"
+                    >
+                        AM
+                    </div>
+
+
+                    <div class="user-details">
+
+                        <h4 id="studentName">
+                            Alex Meja
+                        </h4>
+
+                        <small>
+                            MSCE Candidate
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ==================================================
+             STUDENTS HEADER
+        ================================================== -->
+
+        <section class="welcome">
+
+
+            <div class="welcome-content">
+
+                <h1>
+                    MalCert
+                    <span>
+                        Students
+                    </span>
+                </h1>
+
+                <p>
+                    Connect with students, share knowledge
+                    and study together for your MSCE exams.
+                </p>
+
+
+                <button
+                    class="primary-btn"
+                    type="button"
+                    onclick="scrollToStudents()"
+                >
+
+                    <i class="fas fa-users"></i>
+
+                    Find Students
+
+                </button>
+
+            </div>
+
+
+            <div class="student-photo">
+
+                <div
+                    style="
+                    width:100%;
+                    height:100%;
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                    font-size:80px;
+                    color:#ffffff;
+                    "
+                >
+
+                    <i class="fas fa-users"></i>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             COMMUNITY STATISTICS
+        ================================================== -->
+
+        <section class="stats">
+
+
+            <div class="card">
+
+                <i class="fas fa-users"></i>
+
+                <h2>
+                    15k
+                </h2>
+
+                <p>
+                    Students
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <i class="fas fa-user-check"></i>
+
+                <h2>
+                    2,450
+                </h2>
+
+                <p>
+                    Online Today
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <i class="fas fa-comments"></i>
+
+                <h2>
+                    8,420
+                </h2>
+
+                <p>
+                    Discussions
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <i class="fas fa-graduation-cap"></i>
+
+                <h2>
+                    4,820
+                </h2>
+
+                <p>
+                    MSCE Candidates
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ==================================================
+             STUDENTS
+        ================================================== -->
+
+        <section id="studentsSection">
+
+
+            <div class="section-title">
+
+                <h2>
+                    Students
+                </h2>
+
+                <span>
+                    Connect & Learn
+                </span>
+
+            </div>
+
+
+            <div
+                id="studentsGrid"
+                class="subjects"
+            >
+
+
+                <!-- STUDENT 1 -->
+
+                <div
+                    class="subject-card student-card"
+                    data-name="Brian Banda"
+                >
+
+                    <div
+                        class="avatar"
+                        style="margin:auto;"
+                    >
+                        BB
+                    </div>
+
+                    <h3>
+                        Brian Banda
+                    </h3>
+
+                    <p>
+                        Form 4 • Mathematics
+                    </p>
+
+                    <button
+                        type="button"
+                        onclick="connectStudent('Brian Banda')"
+                    >
+
+                        <i class="fas fa-user-plus"></i>
+
+                        Connect
+
+                    </button>
+
+                </div>
+
+
+                <!-- STUDENT 2 -->
+
+                <div
+                    class="subject-card student-card"
+                    data-name="Mary Phiri"
+                >
+
+                    <div
+                        class="avatar"
+                        style="margin:auto;"
+                    >
+                        MP
+                    </div>
+
+                    <h3>
+                        Mary Phiri
+                    </h3>
+
+                    <p>
+                        Form 4 • Biology
+                    </p>
+
+                    <button
+                        type="button"
+                        onclick="connectStudent('Mary Phiri')"
+                    >
+
+                        <i class="fas fa-user-plus"></i>
+
+                        Connect
+
+                    </button>
+
+                </div>
+
+
+                <!-- STUDENT 3 -->
+
+                <div
+                    class="subject-card student-card"
+                    data-name="Chisomo Mbewe"
+                >
+
+                    <div
+                        class="avatar"
+                        style="margin:auto;"
+                    >
+                        CM
+                    </div>
+
+                    <h3>
+                        Chisomo Mbewe
+                    </h3>
+
+                    <p>
+                        Form 3 • Chemistry
+                    </p>
+
+                    <button
+                        type="button"
+                        onclick="connectStudent('Chisomo Mbewe')"
+                    >
+
+                        <i class="fas fa-user-plus"></i>
+
+                        Connect
+
+                    </button>
+
+                </div>
+
+
+                <!-- STUDENT 4 -->
+
+                <div
+                    class="subject-card student-card"
+                    data-name="Gift Mwale"
+                >
+
+                    <div
+                        class="avatar"
+                        style="margin:auto;"
+                    >
+                        GM
+                    </div>
+
+                    <h3>
+                        Gift Mwale
+                    </h3>
+
+                    <p>
+                        Form 4 • English
+                    </p>
+
+                    <button
+                        type="button"
+                        onclick="connectStudent('Gift Mwale')"
+                    >
+
+                        <i class="fas fa-user-plus"></i>
+
+                        Connect
+
+                    </button>
+
+                </div>
+
+
+                <!-- STUDENT 5 -->
+
+                <div
+                    class="subject-card student-card"
+                    data-name="Thoko Zimba"
+                >
+
+                    <div
+                        class="avatar"
+                        style="margin:auto;"
+                    >
+                        TZ
+                    </div>
+
+                    <h3>
+                        Thoko Zimba
+                    </h3>
+
+                    <p>
+                        Form 4 • Economics
+                    </p>
+
+                    <button
+                        type="button"
+                        onclick="connectStudent('Thoko Zimba')"
+                    >
+
+                        <i class="fas fa-user-plus"></i>
+
+                        Connect
+
+                    </button>
+
+                </div>
+
+
+                <!-- STUDENT 6 -->
+
+                <div
+                    class="subject-card student-card"
+                    data-name="Andrew Phiri"
+                >
+
+                    <div
+                        class="avatar"
+                        style="margin:auto;"
+                    >
+                        AP
+                    </div>
+
+                    <h3>
+                        Andrew Phiri
+                    </h3>
+
+                    <p>
+                        Form 3 • Mathematics
+                    </p>
+
+                    <button
+                        type="button"
+                        onclick="connectStudent('Andrew Phiri')"
+                    >
+
+                        <i class="fas fa-user-plus"></i>
+
+                        Connect
+
+                    </button>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             STUDY COMMUNITY
+        ================================================== -->
+
+        <section style="margin-top:35px;">
+
+
+            <div class="section-title">
+
+                <h2>
+                    Community
+                </h2>
+
+            </div>
+
+
+            <div class="uploads">
+
+
+                <div class="upload-item">
+
+                    <div>
+
+                        <h4>
+                            Mathematics Study Group
+                        </h4>
+
+                        <small>
+                            245 students discussing Mathematics
+                        </small>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        onclick="joinGroup('Mathematics Study Group')"
+                    >
+
+                        <i class="fas fa-users"></i>
+
+                        Join
+
+                    </button>
+
+                </div>
+
+
+                <div class="upload-item">
+
+                    <div>
+
+                        <h4>
+                            Biology Revision Group
+                        </h4>
+
+                        <small>
+                            189 students studying Biology
+                        </small>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        onclick="joinGroup('Biology Revision Group')"
+                    >
+
+                        <i class="fas fa-users"></i>
+
+                        Join
+
+                    </button>
+
+                </div>
+
+
+                <div class="upload-item">
+
+                    <div>
+
+                        <h4>
+                            MSCE General Discussion
+                        </h4>
+
+                        <small>
+                            1,240 students
+                        </small>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        onclick="joinGroup('MSCE General Discussion')"
+                    >
+
+                        <i class="fas fa-users"></i>
+
+                        Join
+
+                    </button>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==================================================
+         RIGHT PANEL
+    ================================================== -->
+
+    <aside class="right-panel">
+
+
+        <!-- ==================================================
+             EXAM COUNTDOWN
+        ================================================== -->
+
+        <a
+            href="exam-countdown.html"
+            class="dashboard-feature-card"
+        >
+
+            <div class="feature-icon exam-icon">
+
+                <i class="fas fa-calendar-days"></i>
+
+            </div>
+
+
+            <div class="feature-content">
+
+                <small>
+                    MSCE EXAMINATION
+                </small>
+
+                <h3>
+                    Exam Countdown
+                </h3>
+
+                <p>
+                    View the countdown to the
+                    MSCE examinations.
+                </p>
+
+            </div>
+
+
+            <div class="feature-arrow">
+
+                <i class="fas fa-arrow-right"></i>
+
+            </div>
+
+        </a>
+
+
+        <!-- ==================================================
+             SYLLABUS & CHIEF EXAMINER REPORTS
+        ================================================== -->
+
+        <a
+            href="resources.html"
+            class="dashboard-feature-card"
+        >
+
+            <div class="feature-icon syllabus-icon">
+
+                <i class="fas fa-file-circle-check"></i>
+
+            </div>
+
+
+            <div class="feature-content">
+
+                <small>
+                    EXAM RESOURCES
+                </small>
+
+                <h3>
+                    Syllabus & Chief Examiner Reports
+                </h3>
+
+                <p>
+                    Access subject syllabuses and
+                    Chief Examiner reports.
+                </p>
+
+            </div>
+
+
+            <div class="feature-arrow">
+
+                <i class="fas fa-arrow-right"></i>
+
+            </div>
+
+        </a>
+
+
+        <!-- ==================================================
+             MALCERT AI
+        ================================================== -->
+
+        <a
+            href="malcert-ai.html"
+            class="dashboard-feature-card"
+        >
+
+            <div class="feature-icon ai-icon">
+
+                <i class="fas fa-robot"></i>
+
+            </div>
+
+
+            <div class="feature-content">
+
+                <small>
+                    AI STUDY ASSISTANT
+                </small>
+
+                <h3>
+                    MalCert AI
+                </h3>
+
+                <p>
+                    Ask questions and get help
+                    with your MSCE studies.
+                </p>
+
+            </div>
+
+
+            <div class="feature-arrow">
+
+                <i class="fas fa-arrow-right"></i>
+
+            </div>
+
+        </a>
+
+
+    </aside>
+
+
+</div>
+
+
+<script src="script.js"></script>
+
+
+<script>
+
+
+/* ==================================================
+   SCROLL TO STUDENTS
+================================================== */
+
+function scrollToStudents() {
+
+    const section =
+        document.getElementById("studentsSection");
+
+    if (section) {
+
+        section.scrollIntoView({
+            behavior:"smooth"
+        });
+
+    }
+
+}
+
+
+/* ==================================================
+   STUDENT SEARCH
+================================================== */
+
+const studentSearch =
+    document.getElementById("studentSearch");
+
+
+if (studentSearch) {
+
+    studentSearch.addEventListener(
+        "input",
+        function() {
+
+            const query =
+                this.value
+                    .toLowerCase()
+                    .trim();
+
+
+            const students =
+                document.querySelectorAll(
+                    ".student-card"
+                );
+
+
+            students.forEach(
+                function(student) {
+
+                    const name =
+                        student.dataset.name
+                            .toLowerCase();
+
+
+                    const text =
+                        student.textContent
+                            .toLowerCase();
+
+
+                    if (
+                        name.includes(query) ||
+                        text.includes(query)
+                    ) {
+
+                        student.style.display =
+                            "";
+
+                    } else {
+
+                        student.style.display =
+                            "none";
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+/* ==================================================
+   CONNECT
+================================================== */
+
+function connectStudent(name) {
+
+    alert(
+        "Connection request sent to " +
+        name +
+        "."
+    );
+
+}
+
+
+/* ==================================================
+   JOIN GROUP
+================================================== */
+
+function joinGroup(group) {
+
+    alert(
+        "You joined " +
+        group +
+        "."
+    );
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>

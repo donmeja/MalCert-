@@ -3894,3 +3894,8 @@ body.dark-mode .setting-input input {
         min-height: 47px;
     }
 }
+.right-panel {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}

@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>MalCert Digital Library</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+>
+
+<link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    rel="stylesheet"
+>
+
+</head>
+
+
+<body>
+
+
+<div class="dashboard">
+
+
+<!-- ==================================================
+     SIDEBAR
+================================================== -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        <a href="index.html">
+
+            <img
+                src="logo.png"
+                alt="MalCert Logo"
+                class="round-img"
+            >
+
+        </a>
+
+        <h2>MalCert</h2>
+
+    </div>
+
+
+    <nav>
+
+        <a href="index.html">
+
+            <i class="fas fa-house"></i>
+
+            <span>
+                Dashboard
+            </span>
+
+        </a>
+
+
+        <a
+            href="library.html"
+            class="active"
+        >
+
+            <i class="fas fa-book"></i>
+
+            <span>
+                Digital Library
+            </span>
+
+        </a>
+
+
+        <a href="study-notes.html">
+
+            <i class="fas fa-note-sticky"></i>
+
+            <span>
+                Study Notes
+            </span>
+
+        </a>
+
+
+        <a href="past-papers.html">
+
+            <i class="fas fa-file-lines"></i>
+
+            <span>
+                Past Papers
+            </span>
+
+        </a>
+
+
+        <a href="settings.html">
+
+            <i class="fas fa-gear"></i>
+
+            <span>
+                Settings
+            </span>
+
+        </a>
+
+
+        <a
+            href="#"
+            id="logoutBtn"
+        >
+
+            <i class="fas fa-right-from-bracket"></i>
+
+            <span>
+                Logout
+            </span>
+
+        </a>
+
+    </nav>
+
+</aside>
+
+
+
+<!-- ==================================================
+     MAIN CONTENT
+================================================== -->
+
+<main class="main-content">
+
+
+<header>
+
+
+    <div class="search-box">
+
+        <i class="fas fa-search"></i>
+
+        <input
+            type="text"
+            id="bookSearch"
+            placeholder="Search books..."
+            autocomplete="off"
+        >
+
+    </div>
+
+
+    <div class="profile">
+
+
+        <div
+            class="notification"
+            id="notification"
+        >
+
+            <i class="fas fa-bell"></i>
+
+            <span class="badge">
+                3
+            </span>
+
+        </div>
+
+
+        <div class="user">
+
+
+            <div
+                class="avatar"
+                id="avatar"
+            >
+                ST
+            </div>
+
+
+            <div class="user-details">
+
+                <h4 id="studentName">
+                    Student
+                </h4>
+
+                <small>
+                    MSCE Candidate
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- ==================================================
+     PAGE TITLE
+================================================== -->
+
+<div class="section-title">
+
+    <h2>
+        Digital Library
+    </h2>
+
+</div>
+
+
+
+<!-- ==================================================
+     SELECT CLASS
+================================================== -->
+
+<div class="card">
+
+    <h3>
+        Select Class
+    </h3>
+
+
+    <div class="class-selection">
+
+        <button
+            class="class-btn"
+            type="button"
+            id="form3Btn"
+        >
+
+            Form 3
+
+        </button>
+
+
+        <button
+            class="class-btn"
+            type="button"
+            id="form4Btn"
+        >
+
+            Form 4
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     SUBJECTS
+================================================== -->
+
+<div class="section-title">
+
+    <h2 id="formTitle">
+        Subjects
+    </h2>
+
+</div>
+
+
+<div
+    class="library-subjects"
+    id="subjects"
+>
+
+    <div style="padding:20px;">
+
+        <i class="fas fa-spinner fa-spin"></i>
+
+        Loading books from Supabase...
+
+    </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     BOOKS
+================================================== -->
+
+<div
+    id="booksSection"
+    style="display:none;"
+>
+
+
+    <div class="section-title">
+
+        <h2 id="subjectTitle">
+            Available Books
+        </h2>
+
+    </div>
+
+
+    <div
+        class="library-books"
+        id="books"
+    >
+
+    </div>
+
+
+</div>
+
+
+</main>
+
+
+
+<!-- ==================================================
+     RIGHT PANEL
+================================================== -->
+
+<aside class="right-panel">
+
+
+    <!-- EXAM COUNTDOWN -->
+
+    <a
+        href="exam-countdown.html"
+        class="dashboard-feature-card"
+    >
+
+        <div class="feature-icon exam-icon">
+
+            <i class="fas fa-calendar-days"></i>
+
+        </div>
+
+
+        <div class="feature-content">
+
+            <small>
+                MSCE EXAMINATION
+            </small>
+
+            <h3>
+                Exam Countdown
+            </h3>
+
+            <p>
+                View the countdown to the
+                MSCE examinations.
+            </p>
+
+        </div>
+
+
+        <div class="feature-arrow">
+
+            <i class="fas fa-arrow-right"></i>
+
+        </div>
+
+    </a>
+
+
+
+    <!-- RESOURCES -->
+
+    <a
+        href="resources.html"
+        class="dashboard-feature-card"
+    >
+
+        <div class="feature-icon syllabus-icon">
+
+            <i class="fas fa-file-circle-check"></i>
+
+        </div>
+
+
+        <div class="feature-content">
+
+            <small>
+                EXAM RESOURCES
+            </small>
+
+            <h3>
+                Syllabus & Chief Examiner Reports
+            </h3>
+
+            <p>
+                Access subject syllabuses and
+                Chief Examiner reports.
+            </p>
+
+        </div>
+
+
+        <div class="feature-arrow">
+
+            <i class="fas fa-arrow-right"></i>
+
+        </div>
+
+    </a>
+
+
+
+    <!-- MALCERT AI -->
+
+    <a
+        href="malcert-ai.html"
+        class="dashboard-feature-card"
+    >
+
+        <div class="feature-icon ai-icon">
+
+            <i class="fas fa-robot"></i>
+
+        </div>
+
+
+        <div class="feature-content">
+
+            <small>
+                AI STUDY ASSISTANT
+            </small>
+
+            <h3>
+                MalCert AI
+            </h3>
+
+            <p>
+                Ask questions and get help
+                with your MSCE studies.
+            </p>
+
+        </div>
+
+
+        <div class="feature-arrow">
+
+            <i class="fas fa-arrow-right"></i>
+
+        </div>
+
+    </a>
+
+
+
+    <!-- STUDY GROUP -->
+
+    <a
+        href="study-group.html"
+        class="dashboard-feature-card"
+    >
+
+        <div class="feature-icon group-icon">
+
+            <i class="fas fa-users"></i>
+
+        </div>
+
+
+        <div class="feature-content">
+
+            <small>
+                STUDENT COMMUNITY
+            </small>
+
+            <h3>
+                Study Group
+            </h3>
+
+            <p>
+                Discuss, ask questions and
+                learn with other students.
+            </p>
+
+        </div>
+
+
+        <div class="feature-arrow">
+
+            <i class="fas fa-arrow-right"></i>
+
+        </div>
+
+    </a>
+
+
+</aside>
+
+
+</div>
+
+
+
+<!-- ==================================================
+     SUPABASE
+================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+
+<!-- ==================================================
+     MAIN MALCERT SCRIPT
+================================================== -->
+
+<script src="script.js"></script>
+
+
+
+<script>
+
+/* =====================================================
+   MALCERT DIGITAL LIBRARY
+   SUPABASE
+   VIEW ONLY
+===================================================== */
+
+
+/* =====================================================
+   SUPABASE CONFIG
+===================================================== */
+
+const LIBRARY_SUPABASE_URL =
+    "https://qdodtmmomcyvvudqstbk.supabase.co";
+
+const LIBRARY_SUPABASE_KEY =
+    "sb_publishable_T5YgDR9MXGwi0SBawKpI2A_pMv-ytMb";
+
+
+
+const librarySupabase =
+    window.supabase.createClient(
+        LIBRARY_SUPABASE_URL,
+        LIBRARY_SUPABASE_KEY
+    );
+
+
+
+/* =====================================================
+   GLOBAL DATA
+===================================================== */
+
+let libraryData = {};
+
+let selectedForm = "Form 3";
+
+
+
+/* =====================================================
+   LOAD BOOKS
+===================================================== */
+
+async function loadLibraryBooks() {
+
+
+    const subjectBox =
+        document.getElementById(
+            "subjects"
+        );
+
+
+    subjectBox.innerHTML = `
+
+        <div style="padding:20px;">
+
+            <i class="fas fa-spinner fa-spin"></i>
+
+            Loading books from Supabase...
+
+        </div>
+
+    `;
+
+
+    try {
+
+
+        const result =
+            await librarySupabase
+                .from("materials")
+                .select(
+                    "id,title,description,type,subject,class,file_path,created_at"
+                )
+                .eq(
+                    "type",
+                    "Book"
+                )
+                .order(
+                    "created_at",
+                    {
+                        ascending: false
+                    }
+                );
+
+
+        const data =
+            result.data;
+
+
+        const error =
+            result.error;
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        console.log(
+            "MalCert books loaded:",
+            data
+        );
+
+
+        libraryData = {
+
+            "Form 3": {},
+
+            "Form 4": {}
+
+        };
+
+
+        (data || []).forEach(
+            function(book)
+            {
+
+
+                const form =
+                    String(
+                        book.class || ""
+                    ).trim();
+
+
+                const subject =
+                    String(
+                        book.subject || ""
+                    ).trim();
+
+
+                if (
+                    form !== "Form 3" &&
+                    form !== "Form 4"
+                ) {
+
+                    return;
+
+                }
+
+
+                if (!subject) {
+
+                    return;
+
+                }
+
+
+                if (
+                    !libraryData[form][subject]
+                ) {
+
+                    libraryData[form][subject] =
+                        [];
+
+                }
+
+
+                libraryData[form][subject]
+                    .push({
+
+                        id:
+                            book.id,
+
+                        title:
+                            book.title ||
+                            "Untitled Book",
+
+                        description:
+                            book.description ||
+                            "MalCert Digital Library",
+
+                        type:
+                            book.type ||
+                            "PDF",
+
+                        filePath:
+                            book.file_path ||
+                            ""
+
+                    });
+
+            }
+        );
+
+
+        showForm(
+            "Form 3"
+        );
+
+
+    }
+
+
+    catch(error) {
+
+
+        console.error(
+            "Supabase library error:",
+            error
+        );
+
+
+        subjectBox.innerHTML = `
+
+            <div
+                style="
+                    padding:20px;
+                    color:#c0392b;
+                "
+            >
+
+                <i class="fas fa-circle-exclamation"></i>
+
+                <strong>
+                    Unable to load books.
+                </strong>
+
+                <br><br>
+
+                <small>
+                    ${escapeHTML(
+                        error.message ||
+                        "Unknown Supabase error"
+                    )}
+                </small>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+
+/* =====================================================
+   SHOW FORM
+===================================================== */
+
+function showForm(form) {
+
+
+    selectedForm =
+        form;
+
+
+    document.getElementById(
+        "formTitle"
+    ).textContent =
+        form +
+        " Subjects";
+
+
+    const subjectBox =
+        document.getElementById(
+            "subjects"
+        );
+
+
+    subjectBox.innerHTML =
+        "";
+
+
+    document.getElementById(
+        "booksSection"
+    ).style.display =
+        "none";
+
+
+    const subjects =
+        Object.keys(
+            libraryData[form] || {}
+        ).sort();
+
+
+    if (
+        subjects.length === 0
+    ) {
+
+
+        subjectBox.innerHTML = `
+
+            <div class="empty-library">
+
+                <i class="fas fa-folder-open"></i>
+
+                <h3>
+                    No Books Available
+                </h3>
+
+                <p>
+                    There are currently no books
+                    uploaded for
+                    ${escapeHTML(form)}.
+                </p>
+
+            </div>
+
+        `;
+
+
+        return;
+
+    }
+
+
+    subjects.forEach(
+        function(subject)
+        {
+
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "library-subject-card";
+
+
+            card.innerHTML = `
+
+                <div class="subject-icon">
+
+                    <i class="fas fa-book"></i>
+
+                </div>
+
+
+                <h3>
+
+                    ${escapeHTML(
+                        subject
+                    )}
+
+                </h3>
+
+
+                <p>
+
+                    ${
+                        libraryData[form][subject]
+                            .length
+                    }
+
+                    book(s) available
+
+                </p>
+
+            `;
+
+
+            card.addEventListener(
+                "click",
+                function() {
+
+                    showBooks(
+                        form,
+                        subject
+                    );
+
+                }
+            );
+
+
+            subjectBox.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   SHOW BOOKS
+===================================================== */
+
+function showBooks(
+    form,
+    subject
+) {
+
+
+    const booksSection =
+        document.getElementById(
+            "booksSection"
+        );
+
+
+    booksSection.style.display =
+        "block";
+
+
+    document.getElementById(
+        "subjectTitle"
+    ).textContent =
+        subject +
+        " — Available Books";
+
+
+    const bookBox =
+        document.getElementById(
+            "books"
+        );
+
+
+    bookBox.innerHTML =
+        "";
+
+
+    const books =
+        (
+            libraryData[form] &&
+            libraryData[form][subject]
+        ) || [];
+
+
+    if (
+        books.length === 0
+    ) {
+
+
+        bookBox.innerHTML = `
+
+            <div class="empty-library">
+
+                <i class="fas fa-book-open"></i>
+
+                <h3>
+                    No Books Available
+                </h3>
+
+                <p>
+                    There are currently no books
+                    uploaded for
+                    ${escapeHTML(subject)}.
+                </p>
+
+            </div>
+
+        `;
+
+
+        return;
+
+    }
+
+
+    books.forEach(
+        function(book)
+        {
+
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "library-book-card";
+
+
+            card.setAttribute(
+                "data-book",
+                (
+                    book.title +
+                    " " +
+                    subject +
+                    " " +
+                    form
+                ).toLowerCase()
+            );
+
+
+            card.innerHTML = `
+
+                <div class="book-icon">
+
+                    <i class="fas fa-file-pdf"></i>
+
+                </div>
+
+
+                <div class="book-info">
+
+                    <h3>
+
+                        ${escapeHTML(
+                            book.title
+                        )}
+
+                    </h3>
+
+
+                    <p>
+
+                        ${escapeHTML(
+                            book.description
+                        )}
+
+                    </p>
+
+
+                    <span class="book-type">
+
+                        <i class="fas fa-file-pdf"></i>
+
+                        ${escapeHTML(
+                            book.type
+                        )}
+
+                    </span>
+
+                </div>
+
+
+                <div class="book-actions">
+
+                    <button
+                        class="view-book-btn"
+                        type="button"
+                    >
+
+                        <i class="fas fa-eye"></i>
+
+                        View
+
+                    </button>
+
+                </div>
+
+            `;
+
+
+            const viewButton =
+                card.querySelector(
+                    ".view-book-btn"
+                );
+
+
+            viewButton.addEventListener(
+                "click",
+                function() {
+
+                    viewBook(
+                        book
+                    );
+
+                }
+            );
+
+
+            bookBox.appendChild(
+                card
+            );
+
+        }
+    );
+
+
+    booksSection.scrollIntoView({
+
+        behavior:
+            "smooth",
+
+        block:
+            "start"
+
+    });
+
+}
+
+
+
+/* =====================================================
+   GET PUBLIC PDF URL
+===================================================== */
+
+function getBookURL(book) {
+
+
+    if (
+        !book.filePath
+    ) {
+
+        return "";
+
+    }
+
+
+    const result =
+        librarySupabase
+            .storage
+            .from("malcert")
+            .getPublicUrl(
+                book.filePath
+            );
+
+
+    return result.data.publicUrl;
+
+}
+
+
+
+/* =====================================================
+   VIEW BOOK
+===================================================== */
+
+function viewBook(book) {
+
+
+    const url =
+        getBookURL(
+            book
+        );
+
+
+    if (!url) {
+
+
+        alert(
+            "This book does not have a PDF attached yet."
+        );
+
+
+        return;
+
+    }
+
+
+    console.log(
+        "Opening MalCert book:",
+        url
+    );
+
+
+    window.open(
+        url,
+        "_blank"
+    );
+
+}
+
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+document
+    .getElementById(
+        "bookSearch"
+    )
+    .addEventListener(
+        "input",
+        function()
+        {
+
+
+            const search =
+                this.value
+                    .toLowerCase()
+                    .trim();
+
+
+            const books =
+                document.querySelectorAll(
+                    ".library-book-card"
+                );
+
+
+            books.forEach(
+                function(book)
+                {
+
+
+                    const text =
+                        book.getAttribute(
+                            "data-book"
+                        ) || "";
+
+
+                    book.style.display =
+                        text.includes(
+                            search
+                        )
+                            ? "flex"
+                            : "none";
+
+                }
+            );
+
+        }
+    );
+
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value) {
+
+
+    return String(
+        value || ""
+    )
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+
+/* =====================================================
+   FORM BUTTONS
+===================================================== */
+
+document
+    .getElementById(
+        "form3Btn"
+    )
+    .addEventListener(
+        "click",
+        function() {
+
+            showForm(
+                "Form 3"
+            );
+
+        }
+    );
+
+
+document
+    .getElementById(
+        "form4Btn"
+    )
+    .addEventListener(
+        "click",
+        function() {
+
+            showForm(
+                "Form 4"
+            );
+
+        }
+    );
+
+
+
+/* =====================================================
+   START
+===================================================== */
+
+loadLibraryBooks();
+
+</script>
+
+
+</body>
+
+</html>

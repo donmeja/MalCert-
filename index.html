@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MalCert Dashboard</title>
+
+
+    <!-- ==================================================
+         MAIN CSS
+    ================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+
+    <!-- ==================================================
+         GOOGLE FONT
+    ================================================== -->
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- ==================================================
+         FONT AWESOME
+    ================================================== -->
+
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        rel="stylesheet"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- ==================================================
+     MOBILE MENU BUTTON
+================================================== -->
+
+<button
+    class="menu-btn"
+    id="menuBtn"
+    type="button"
+    aria-label="Open menu"
+>
+
+    <i class="fas fa-bars"></i>
+
+</button>
+
+
+<!-- ==================================================
+     MOBILE MENU OVERLAY
+================================================== -->
+
+<div
+    class="mobile-menu-overlay"
+    id="mobileMenuOverlay"
+></div>
+
+
+<!-- ==================================================
+     MOBILE MENU
+================================================== -->
+
+<aside
+    class="mobile-menu"
+    id="mobileMenu"
+>
+
+
+    <!-- MOBILE MENU HEADER -->
+
+    <div class="mobile-menu-header">
+
+
+        <div class="mobile-menu-brand">
+
+            <img
+                src="logo.png"
+                alt="MalCert Logo"
+                class="round-img"
+            >
+
+            <h2>
+                MalCert
+            </h2>
+
+        </div>
+
+
+        <button
+            class="close-menu-btn"
+            id="closeMenuBtn"
+            type="button"
+            aria-label="Close menu"
+        >
+
+            <i class="fas fa-xmark"></i>
+
+        </button>
+
+    </div>
+
+
+    <!-- MOBILE NAVIGATION -->
+
+    <nav class="mobile-nav">
+
+
+        <div class="mobile-nav-section">
+
+
+            <div class="mobile-nav-title">
+                MAIN MENU
+            </div>
+
+
+            <!-- DASHBOARD -->
+
+            <a
+                href="index.html"
+                class="mobile-nav-link active"
+            >
+
+                <i class="fas fa-house"></i>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <!-- DIGITAL LIBRARY -->
+
+            <a
+                href="library.html"
+                class="mobile-nav-link"
+            >
+
+                <i class="fas fa-book"></i>
+
+                <span>
+                    Digital Library
+                </span>
+
+            </a>
+
+
+            <!-- STUDY NOTES -->
+
+            <a
+                href="study-notes.html"
+                class="mobile-nav-link"
+            >
+
+                <i class="fas fa-note-sticky"></i>
+
+                <span>
+                    Study Notes
+                </span>
+
+            </a>
+
+
+            <!-- PAST PAPERS -->
+
+            <a
+                href="past-papers.html"
+                class="mobile-nav-link"
+            >
+
+                <i class="fas fa-file-lines"></i>
+
+                <span>
+                    Past Papers
+                </span>
+
+            </a>
+
+
+            <!-- SETTINGS -->
+
+            <a
+                href="settings.html"
+                class="mobile-nav-link"
+            >
+
+                <i class="fas fa-gear"></i>
+
+                <span>
+                    Settings
+                </span>
+
+            </a>
+
+
+            <!-- LOGOUT -->
+
+            <a
+                href="#"
+                id="mobileLogoutBtn"
+                class="mobile-nav-link logout-link"
+            >
+
+                <i class="fas fa-right-from-bracket"></i>
+
+                <span>
+                    Logout
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <!-- ==================================================
+             MOBILE FEATURES
+        ================================================== -->
+
+        <div class="mobile-nav-section right-mobile-section">
+
+
+            <div class="mobile-nav-title">
+                EXAM & STUDY TOOLS
+            </div>
+
+
+            <!-- EXAM COUNTDOWN -->
+
+            <a
+                href="exam-countdown.html"
+                class="mobile-feature-link"
+            >
+
+                <div class="mobile-feature-icon exam-mobile-icon">
+
+                    <i class="fas fa-calendar-days"></i>
+
+                </div>
+
+
+                <div class="mobile-feature-content">
+
+                    <strong>
+                        Exam Countdown
+                    </strong>
+
+                    <span>
+                        View MSCE examination countdown
+                    </span>
+
+                </div>
+
+
+                <div class="mobile-feature-arrow">
+
+                    <i class="fas fa-arrow-right"></i>
+
+                </div>
+
+            </a>
+
+
+            <!-- RESOURCES -->
+
+            <a
+                href="resources.html"
+                class="mobile-feature-link"
+            >
+
+                <div class="mobile-feature-icon syllabus-mobile-icon">
+
+                    <i class="fas fa-file-circle-check"></i>
+
+                </div>
+
+
+                <div class="mobile-feature-content">
+
+                    <strong>
+                        Syllabus & Reports
+                    </strong>
+
+                    <span>
+                        Exam resources and reports
+                    </span>
+
+                </div>
+
+
+                <div class="mobile-feature-arrow">
+
+                    <i class="fas fa-arrow-right"></i>
+
+                </div>
+
+            </a>
+
+
+            <!-- MALCERT AI -->
+
+            <a
+                href="malcert-ai.html"
+                class="mobile-feature-link"
+            >
+
+                <div class="mobile-feature-icon ai-mobile-icon">
+
+                    <i class="fas fa-robot"></i>
+
+                </div>
+
+
+                <div class="mobile-feature-content">
+
+                    <strong>
+                        MalCert AI
+                    </strong>
+
+                    <span>
+                        AI study assistant
+                    </span>
+
+                </div>
+
+
+                <div class="mobile-feature-arrow">
+
+                    <i class="fas fa-arrow-right"></i>
+
+                </div>
+
+            </a>
+
+
+            <!-- STUDY GROUP -->
+
+            <a
+                href="study-group.html"
+                class="mobile-feature-link"
+            >
+
+                <div class="mobile-feature-icon group-mobile-icon">
+
+                    <i class="fas fa-users"></i>
+
+                </div>
+
+
+                <div class="mobile-feature-content">
+
+                    <strong>
+                        Study Group
+                    </strong>
+
+                    <span>
+                        Learn with other students
+                    </span>
+
+                </div>
+
+
+                <div class="mobile-feature-arrow">
+
+                    <i class="fas fa-arrow-right"></i>
+
+                </div>
+
+            </a>
+
+        </div>
+
+    </nav>
+
+</aside>
+
+
+<!-- ==================================================
+     DASHBOARD
+================================================== -->
+
+<div class="dashboard">
+
+
+    <!-- ==================================================
+         LEFT SIDEBAR
+    ================================================== -->
+
+    <aside class="sidebar">
+
+
+        <!-- LOGO -->
+
+        <div class="logo">
+
+            <a href="index.html">
+
+                <img
+                    src="logo.png"
+                    alt="MalCert Logo"
+                    class="round-img"
+                >
+
+            </a>
+
+            <h2>
+                MalCert
+            </h2>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <nav>
+
+
+            <!-- DASHBOARD -->
+
+            <a
+                href="index.html"
+                class="active"
+            >
+
+                <i class="fas fa-house"></i>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <!-- DIGITAL LIBRARY -->
+
+            <a href="library.html">
+
+                <i class="fas fa-book"></i>
+
+                <span>
+                    Digital Library
+                </span>
+
+            </a>
+
+
+            <!-- STUDY NOTES -->
+
+            <a href="study-notes.html">
+
+                <i class="fas fa-note-sticky"></i>
+
+                <span>
+                    Study Notes
+                </span>
+
+            </a>
+
+
+            <!-- PAST PAPERS -->
+
+            <a href="past-papers.html">
+
+                <i class="fas fa-file-lines"></i>
+
+                <span>
+                    Past Papers
+                </span>
+
+            </a>
+
+
+            <!-- SETTINGS -->
+
+            <a href="settings.html">
+
+                <i class="fas fa-gear"></i>
+
+                <span>
+                    Settings
+                </span>
+
+            </a>
+
+
+            <!-- LOGOUT -->
+
+            <a
+                href="#"
+                id="logoutBtn"
+            >
+
+                <i class="fas fa-right-from-bracket"></i>
+
+                <span>
+                    Logout
+                </span>
+
+            </a>
+
+
+        </nav>
+
+    </aside>
+
+
+    <!-- ==================================================
+         MAIN CONTENT
+    ================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header>
+
+
+            <!-- SEARCH -->
+
+            <div class="search-box">
+
+                <i class="fas fa-search"></i>
+
+                <input
+                    type="text"
+                    id="search"
+                    placeholder="Search books, notes & past papers..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <!-- PROFILE -->
+
+            <div class="profile">
+
+
+                <!-- NOTIFICATION -->
+
+                <div
+                    class="notification"
+                    id="notification"
+                >
+
+                    <i class="fas fa-bell"></i>
+
+                    <span class="badge">
+                        3
+                    </span>
+
+                </div>
+
+
+                <!-- USER -->
+
+                <div class="user">
+
+
+                    <!-- AVATAR -->
+
+                    <div
+                        class="avatar"
+                        id="avatar"
+                    >
+                        AM
+                    </div>
+
+
+                    <!-- USER DETAILS -->
+
+                    <div class="user-details">
+
+                        <h4 id="studentName">
+                            Alex Meja
+                        </h4>
+
+                        <small>
+                            MSCE Candidate
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ==================================================
+             WELCOME CARD
+        ================================================== -->
+
+        <section class="welcome">
+
+
+            <div class="welcome-content">
+
+
+                <h1 id="welcomeTitle">
+
+                    Welcome Back,
+
+                    <span id="welcomeName">
+                        Alex Meja
+                    </span>
+
+                </h1>
+
+
+                <p>
+
+                    Continue preparing for your MSCE
+                    examinations with MalCert Digital Library.
+
+                </p>
+
+
+                <button
+                    class="primary-btn"
+                    id="continueLearning"
+                    type="button"
+                >
+
+                    <i class="fas fa-book-open"></i>
+
+                    Continue Learning
+
+                </button>
+
+
+            </div>
+
+
+            <!-- STUDENT PHOTO -->
+
+            <div class="student-photo">
+
+                <img
+                    src="student.png"
+                    alt="Student"
+                >
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ==================================================
+             STATISTICS
+        ================================================== -->
+
+        <section class="stats">
+
+
+            <!-- PAST PAPERS -->
+
+            <div class="card">
+
+                <i class="fas fa-book-open"></i>
+
+                <h2>
+                    2,450
+                </h2>
+
+                <p>
+                    Past Papers
+                </p>
+
+            </div>
+
+
+            <!-- STUDY NOTES -->
+
+            <div class="card">
+
+                <i class="fas fa-note-sticky"></i>
+
+                <h2>
+                    842
+                </h2>
+
+                <p>
+                    Study Notes
+                </p>
+
+            </div>
+
+
+            <!-- STUDENTS -->
+
+            <div class="card">
+
+                <i class="fas fa-users"></i>
+
+                <h2>
+                    15k
+                </h2>
+
+                <p>
+                    Students
+                </p>
+
+            </div>
+
+
+            <!-- DOWNLOADS -->
+
+            <div class="card">
+
+                <i class="fas fa-download"></i>
+
+                <h2>
+                    1,200
+                </h2>
+
+                <p>
+                    Downloads
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ==================================================
+             POPULAR SUBJECTS
+        ================================================== -->
+
+        <section>
+
+
+            <div class="section-title">
+
+                <h2>
+                    Popular Subjects
+                </h2>
+
+                <a href="library.html">
+                    View All
+                </a>
+
+            </div>
+
+
+            <div class="subjects">
+
+
+                <!-- MATHEMATICS -->
+
+                <div class="subject-card">
+
+                    <i class="fas fa-calculator"></i>
+
+                    <h3>
+                        Mathematics
+                    </h3>
+
+                    <p>
+                        64 Books
+                    </p>
+
+                    <button
+                        type="button"
+                        onclick="window.location.href='library.html'"
+                    >
+
+                        Open
+
+                    </button>
+
+                </div>
+
+
+                <!-- BIOLOGY -->
+
+                <div class="subject-card">
+
+                    <i class="fas fa-dna"></i>
+
+                    <h3>
+                        Biology
+                    </h3>
+
+                    <p>
+                        52 Books
+                    </p>
+
+                    <button
+                        type="button"
+                        onclick="window.location.href='library.html'"
+                    >
+
+                        Open
+
+                    </button>
+
+                </div>
+
+
+                <!-- ENGLISH -->
+
+                <div class="subject-card">
+
+                    <i class="fas fa-language"></i>
+
+                    <h3>
+                        English
+                    </h3>
+
+                    <p>
+                        40 Books
+                    </p>
+
+                    <button
+                        type="button"
+                        onclick="window.location.href='library.html'"
+                    >
+
+                        Open
+
+                    </button>
+
+                </div>
+
+
+                <!-- CHEMISTRY -->
+
+                <div class="subject-card">
+
+                    <i class="fas fa-flask"></i>
+
+                    <h3>
+                        Chemistry
+                    </h3>
+
+                    <p>
+                        35 Books
+                    </p>
+
+                    <button
+                        type="button"
+                        onclick="window.location.href='library.html'"
+                    >
+
+                        Open
+
+                    </button>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             LATEST UPLOADS
+        ================================================== -->
+
+        <section>
+
+
+            <div class="section-title">
+
+                <h2>
+                    Latest Uploads
+                </h2>
+
+                <a href="study-notes.html">
+                    View All
+                </a>
+
+            </div>
+
+
+            <div class="uploads">
+
+
+                <!-- BIOLOGY -->
+
+                <div class="upload-item">
+
+                    <div>
+
+                        <h4>
+                            Biology Notes Form 4
+                        </h4>
+
+                        <small>
+                            Uploaded Today
+                        </small>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        onclick="window.location.href='study-notes.html'"
+                    >
+
+                        <i class="fas fa-download"></i>
+
+                        Download
+
+                    </button>
+
+                </div>
+
+
+                <!-- MATHEMATICS -->
+
+                <div class="upload-item">
+
+                    <div>
+
+                        <h4>
+                            Mathematics Paper 2
+                        </h4>
+
+                        <small>
+                            Yesterday
+                        </small>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        onclick="window.location.href='past-papers.html'"
+                    >
+
+                        <i class="fas fa-eye"></i>
+
+                        View
+
+                    </button>
+
+                </div>
+
+
+                <!-- ENGLISH -->
+
+                <div class="upload-item">
+
+                    <div>
+
+                        <h4>
+                            English Grammar Notes
+                        </h4>
+
+                        <small>
+                            3 Days Ago
+                        </small>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        onclick="window.location.href='study-notes.html'"
+                    >
+
+                        <i class="fas fa-download"></i>
+
+                        Download
+
+                    </button>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ==================================================
+         RIGHT PANEL
+    ================================================== -->
+
+    <aside class="right-panel">
+
+
+        <!-- EXAM COUNTDOWN -->
+
+        <a
+            href="exam-countdown.html"
+            class="dashboard-feature-card"
+        >
+
+            <div class="feature-icon exam-icon">
+
+                <i class="fas fa-calendar-days"></i>
+
+            </div>
+
+
+            <div class="feature-content">
+
+                <small>
+                    MSCE EXAMINATION
+                </small>
+
+                <h3>
+                    Exam Countdown
+                </h3>
+
+                <p>
+                    View the countdown to the
+                    MSCE examinations.
+                </p>
+
+            </div>
+
+
+            <div class="feature-arrow">
+
+                <i class="fas fa-arrow-right"></i>
+
+            </div>
+
+        </a>
+
+
+        <!-- SYLLABUS & REPORTS -->
+
+        <a
+            href="resources.html"
+            class="dashboard-feature-card"
+        >
+
+            <div class="feature-icon syllabus-icon">
+
+                <i class="fas fa-file-circle-check"></i>
+
+            </div>
+
+
+            <div class="feature-content">
+
+                <small>
+                    EXAM RESOURCES
+                </small>
+
+                <h3>
+                    Syllabus & Chief Examiner Reports
+                </h3>
+
+                <p>
+                    Access subject syllabuses and
+                    Chief Examiner reports.
+                </p>
+
+            </div>
+
+
+            <div class="feature-arrow">
+
+                <i class="fas fa-arrow-right"></i>
+
+            </div>
+
+        </a>
+
+
+        <!-- MALCERT AI -->
+
+        <a
+            href="malcert-ai.html"
+            class="dashboard-feature-card"
+        >
+
+            <div class="feature-icon ai-icon">
+
+                <i class="fas fa-robot"></i>
+
+            </div>
+
+
+            <div class="feature-content">
+
+                <small>
+                    AI STUDY ASSISTANT
+                </small>
+
+                <h3>
+                    MalCert AI
+                </h3>
+
+                <p>
+                    Ask questions and get help
+                    with your MSCE studies.
+                </p>
+
+            </div>
+
+
+            <div class="feature-arrow">
+
+                <i class="fas fa-arrow-right"></i>
+
+            </div>
+
+        </a>
+
+
+        <!-- STUDY GROUP -->
+
+        <a
+            href="study-group.html"
+            class="dashboard-feature-card"
+        >
+
+            <div class="feature-icon group-icon">
+
+                <i class="fas fa-users"></i>
+
+            </div>
+
+
+            <div class="feature-content">
+
+                <small>
+                    STUDENT COMMUNITY
+                </small>
+
+                <h3>
+                    Study Group
+                </h3>
+
+                <p>
+                    Discuss, ask questions and
+                    learn with other students.
+                </p>
+
+            </div>
+
+
+            <div class="feature-arrow">
+
+                <i class="fas fa-arrow-right"></i>
+
+            </div>
+
+        </a>
+
+
+    </aside>
+
+
+</div>
+
+
+<!-- ==================================================
+     SUPABASE
+================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="script.js"></script>
+
+
+<!-- ==================================================
+     DASHBOARD JAVASCRIPT
+================================================== -->
+
+<script>
+
+
+    /* ==================================================
+       CONTINUE LEARNING
+    ================================================== */
+
+    const continueLearning =
+        document.getElementById(
+            "continueLearning"
+        );
+
+
+    if (continueLearning) {
+
+        continueLearning.addEventListener(
+            "click",
+            function () {
+
+                window.location.href =
+                    "library.html";
+
+            }
+        );
+
+    }
+
+
+    /* ==================================================
+       DASHBOARD SEARCH
+    ================================================== */
+
+    const search =
+        document.getElementById("search");
+
+
+    if (search) {
+
+        search.addEventListener(
+            "input",
+            function () {
+
+                const query =
+                    this.value
+                        .toLowerCase()
+                        .trim();
+
+
+                const searchableItems =
+                    document.querySelectorAll(
+                        ".subject-card, .upload-item"
+                    );
+
+
+                searchableItems.forEach(
+                    function (item) {
+
+                        const text =
+                            item.textContent
+                                .toLowerCase();
+
+
+                        if (
+                            text.includes(query)
+                        ) {
+
+                            item.style.display =
+                                "";
+
+                        } else {
+
+                            item.style.display =
+                                "none";
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+    }
+
+
+    /* ==================================================
+       MOBILE MENU
+    ================================================== */
+
+    const menuBtn =
+        document.getElementById("menuBtn");
+
+    const mobileMenu =
+        document.getElementById("mobileMenu");
+
+    const closeMenuBtn =
+        document.getElementById("closeMenuBtn");
+
+    const mobileMenuOverlay =
+        document.getElementById(
+            "mobileMenuOverlay"
+        );
+
+
+    function openMobileMenu() {
+
+        if (!mobileMenu) return;
+
+        mobileMenu.classList.add("show");
+
+        mobileMenuOverlay.classList.add("show");
+
+        document.body.classList.add(
+            "mobile-menu-open"
+        );
+
+    }
+
+
+    function closeMobileMenu() {
+
+        if (!mobileMenu) return;
+
+        mobileMenu.classList.remove("show");
+
+        mobileMenuOverlay.classList.remove("show");
+
+        document.body.classList.remove(
+            "mobile-menu-open"
+        );
+
+    }
+
+
+    if (menuBtn) {
+
+        menuBtn.addEventListener(
+            "click",
+            openMobileMenu
+        );
+
+    }
+
+
+    if (closeMenuBtn) {
+
+        closeMenuBtn.addEventListener(
+            "click",
+            closeMobileMenu
+        );
+
+    }
+
+
+    if (mobileMenuOverlay) {
+
+        mobileMenuOverlay.addEventListener(
+            "click",
+            closeMobileMenu
+        );
+
+    }
+
+
+    /* CLOSE MENU AFTER NAVIGATION */
+
+    const mobileLinks =
+        document.querySelectorAll(
+            ".mobile-nav-link:not(.logout-link), .mobile-feature-link"
+        );
+
+
+    mobileLinks.forEach(
+        function (link) {
+
+            link.addEventListener(
+                "click",
+                closeMobileMenu
+            );
+
+        }
+    );
+
+
+    /* ==================================================
+       MOBILE LOGOUT
+    ================================================== */
+
+    const mobileLogoutBtn =
+        document.getElementById(
+            "mobileLogoutBtn"
+        );
+
+
+    if (
+        mobileLogoutBtn &&
+        typeof window.handleLogout === "function"
+    ) {
+
+        mobileLogoutBtn.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+
+                window.handleLogout();
+
+            }
+        );
+
+    }
+
+
+</script>
+
+
+</body>
+
+</html>

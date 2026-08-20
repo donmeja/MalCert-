@@ -1,0 +1,1747 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MalCert Digital Library</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        rel="stylesheet"
+    >
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <a href="index.html">
+                <img
+                    src="logo.png"
+                    alt="MalCert Logo"
+                    class="round-img"
+                >
+            </a>
+
+            <h2>MalCert</h2>
+
+        </div>
+
+        <nav>
+
+            <a href="index.html">
+                <i class="fas fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="library.html" class="active">
+                <i class="fas fa-book"></i>
+                <span>Digital Library</span>
+            </a>
+
+            <a href="study-notes.html">
+                <i class="fas fa-note-sticky"></i>
+                <span>Study Notes</span>
+            </a>
+
+            <a href="past-papers.html">
+                <i class="fas fa-file-lines"></i>
+                <span>Past Papers</span>
+            </a>
+
+            <a href="settings.html">
+                <i class="fas fa-gear"></i>
+                <span>Settings</span>
+            </a>
+
+            <a href="#" id="logoutBtn">
+                <i class="fas fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main-content">
+
+        <header>
+
+            <div class="search-box">
+
+                <i class="fas fa-search"></i>
+
+                <input
+                    type="text"
+                    id="bookSearch"
+                    placeholder="Search books..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+            <div class="profile">
+
+                <div
+                    class="notification"
+                    id="notification"
+                >
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </div>
+
+                <div class="user">
+
+                    <div
+                        class="avatar"
+                        id="avatar"
+                    >
+                        ST
+                    </div>
+
+                    <div class="user-details">
+
+                        <h4 id="studentName">
+                            Student
+                        </h4>
+
+                        <small>
+                            MSCE Candidate
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= PAGE TITLE ================= -->
+
+        <div class="section-title">
+
+            <h2>
+                Digital Library
+            </h2>
+
+        </div>
+
+
+        <!-- ================= SELECT CLASS ================= -->
+
+        <div class="card">
+
+            <h3>
+                Select Class
+            </h3>
+
+            <div class="class-selection">
+
+                <button
+                    class="class-btn"
+                    type="button"
+                    onclick="showForm('Form 3')"
+                >
+                    Form 3
+                </button>
+
+                <button
+                    class="class-btn"
+                    type="button"
+                    onclick="showForm('Form 4')"
+                >
+                    Form 4
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= SUBJECTS ================= -->
+
+        <div class="section-title">
+
+            <h2 id="formTitle">
+                Subjects
+            </h2>
+
+        </div>
+
+        <div
+            class="library-subjects"
+            id="subjects"
+        >
+
+            <div style="padding:20px;">
+
+                <i class="fas fa-book"></i>
+
+                Select Form 3 or Form 4 to view subjects.
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= BOOKS ================= -->
+
+        <div
+            id="booksSection"
+            style="display:none;"
+        >
+
+            <div class="section-title">
+
+                <h2 id="subjectTitle">
+                    Available Books
+                </h2>
+
+            </div>
+
+            <div
+                class="library-books"
+                id="books"
+            ></div>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= RIGHT PANEL ================= -->
+
+    <aside class="right-panel">
+
+        <a
+            href="exam-countdown.html"
+            class="dashboard-feature-card"
+        >
+
+            <div class="feature-icon exam-icon">
+                <i class="fas fa-calendar-days"></i>
+            </div>
+
+            <div class="feature-content">
+
+                <small>
+                    MSCE EXAMINATION
+                </small>
+
+                <h3>
+                    Exam Countdown
+                </h3>
+
+                <p>
+                    View the countdown to the
+                    MSCE examinations.
+                </p>
+
+            </div>
+
+            <div class="feature-arrow">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+
+        </a>
+
+
+        <a
+            href="resources.html"
+            class="dashboard-feature-card"
+        >
+
+            <div class="feature-icon syllabus-icon">
+                <i class="fas fa-file-circle-check"></i>
+            </div>
+
+            <div class="feature-content">
+
+                <small>
+                    EXAM RESOURCES
+                </small>
+
+                <h3>
+                    Syllabus & Chief Examiner Reports
+                </h3>
+
+                <p>
+                    Access subject syllabuses and
+                    Chief Examiner reports.
+                </p>
+
+            </div>
+
+            <div class="feature-arrow">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+
+        </a>
+
+
+        <a
+            href="malcert-ai.html"
+            class="dashboard-feature-card"
+        >
+
+            <div class="feature-icon ai-icon">
+                <i class="fas fa-robot"></i>
+            </div>
+
+            <div class="feature-content">
+
+                <small>
+                    AI STUDY ASSISTANT
+                </small>
+
+                <h3>
+                    MalCert AI
+                </h3>
+
+                <p>
+                    Ask questions and get help
+                    with your MSCE studies.
+                </p>
+
+            </div>
+
+            <div class="feature-arrow">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+
+        </a>
+
+
+        <a
+            href="study-group.html"
+            class="dashboard-feature-card"
+        >
+
+            <div class="feature-icon group-icon">
+                <i class="fas fa-users"></i>
+            </div>
+
+            <div class="feature-content">
+
+                <small>
+                    STUDENT COMMUNITY
+                </small>
+
+                <h3>
+                    Study Group
+                </h3>
+
+                <p>
+                    Discuss, ask questions and
+                    learn with other students.
+                </p>
+
+            </div>
+
+            <div class="feature-arrow">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+
+        </a>
+
+    </aside>
+
+</div>
+
+
+<!-- ==================================================
+     SUPABASE LIBRARY
+================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<script>
+
+/* =====================================================
+   SUPABASE CONFIGURATION
+===================================================== */
+
+const SUPABASE_URL =
+    "https://qdodtmmomcyvvudqstbk.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_T5YgDR9MXGwi0SBawKpI2A_pMv-ytMb";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+/* =====================================================
+   GLOBAL VARIABLES
+===================================================== */
+
+let selectedForm = "";
+
+let allMaterials = [];
+
+
+/* =====================================================
+   LOAD MATERIALS FROM SUPABASE
+===================================================== */
+
+async function loadLibraryMaterials() {
+
+    const subjectBox =
+        document.getElementById("subjects");
+
+
+    subjectBox.innerHTML = `
+
+        <div style="padding:20px;">
+
+            <i class="fas fa-spinner fa-spin"></i>
+
+            Loading MalCert library...
+
+        </div>
+
+    `;
+
+
+    try {
+
+        const { data, error } =
+            await supabaseClient
+                .from("materials")
+                .select("*")
+                .eq("type", "Book")
+                .order("created_at", {
+                    ascending: false
+                });
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        allMaterials =
+            data || [];
+
+
+        console.log(
+            "Supabase library materials:",
+            allMaterials
+        );
+
+
+        subjectBox.innerHTML = `
+
+            <div style="padding:20px;">
+
+                <i class="fas fa-check-circle"></i>
+
+                Select Form 3 or Form 4 above.
+
+            </div>
+
+        `;
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Supabase library error:",
+            error
+        );
+
+
+        subjectBox.innerHTML = `
+
+            <div
+                style="
+                    padding:20px;
+                    color:#c0392b;
+                "
+            >
+
+                <i class="fas fa-circle-exclamation"></i>
+
+                <strong>
+                    Unable to load the Digital Library.
+                </strong>
+
+                <br><br>
+
+                <small>
+                    ${escapeHTML(error.message)}
+                </small>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   NORMALIZE TEXT
+===================================================== */
+
+function normalizeText(value) {
+
+    return String(value || "")
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, " ");
+
+}
+
+
+/* =====================================================
+   IDENTIFY CHANCO BOOK
+===================================================== */
+
+function isChancoBook(book) {
+
+    const title =
+        normalizeText(
+            book.title
+        );
+
+
+    const filePath =
+        normalizeText(
+            book.file_path ||
+            book.filePath ||
+            ""
+        );
+
+
+    return (
+        (
+            title.includes("chanco") &&
+            title.includes("additional") &&
+            title.includes("mathematics")
+        )
+        ||
+        (
+            filePath.includes("chanco") &&
+            filePath.includes("additional") &&
+            filePath.includes("mathematics")
+        )
+    );
+
+}
+
+
+/* =====================================================
+   IDENTIFY PURE AND APPLIED BOOK
+===================================================== */
+
+function isPureAndAppliedBook(book) {
+
+    const title =
+        normalizeText(
+            book.title
+        );
+
+
+    const filePath =
+        normalizeText(
+            book.file_path ||
+            book.filePath ||
+            ""
+        );
+
+
+    return (
+        (
+            title.includes("additional mathematics") &&
+            (
+                title.includes("pure and applied") ||
+                title.includes("pure & applied") ||
+                title.includes("pure applied")
+            )
+        )
+        ||
+        (
+            filePath.includes("additional") &&
+            (
+                filePath.includes("pure") &&
+                filePath.includes("applied")
+            )
+        )
+    );
+
+}
+
+
+/* =====================================================
+   IDENTIFY AGRICULTURE BOOK
+===================================================== */
+
+function isAgricultureBook(book) {
+
+    const title =
+        normalizeText(
+            book.title
+        );
+
+
+    const filePath =
+        normalizeText(
+            book.file_path ||
+            book.filePath ||
+            ""
+        );
+
+
+    const subject =
+        normalizeText(
+            book.subject ||
+            book.subject_name ||
+            ""
+        );
+
+
+    return (
+        subject === "agriculture" ||
+        title.includes("agriculture") ||
+        filePath.includes("agriculture") ||
+        filePath.includes("strides_in_agriculture")
+    );
+
+}
+
+
+/* =====================================================
+   DETECT FORM FROM AGRICULTURE BOOK
+===================================================== */
+
+function getAgricultureForm(book) {
+
+    const title =
+        normalizeText(
+            book.title
+        );
+
+
+    const filePath =
+        normalizeText(
+            book.file_path ||
+            book.filePath ||
+            ""
+        );
+
+
+    const bookClass =
+        normalizeText(
+            book.class ||
+            book.form ||
+            book.grade ||
+            ""
+        );
+
+
+    /*
+       FIRST:
+       Use the database class/form field
+       if it contains Form 3 or Form 4.
+    */
+
+    if (
+        bookClass === "form 3" ||
+        bookClass === "3"
+    ) {
+
+        return "form 3";
+
+    }
+
+
+    if (
+        bookClass === "form 4" ||
+        bookClass === "4"
+    ) {
+
+        return "form 4";
+
+    }
+
+
+    /*
+       SECOND:
+       Detect from title.
+    */
+
+    if (
+        /\bform\s*3\b/i.test(title) ||
+        /\bbook\s*3\b/i.test(title)
+    ) {
+
+        return "form 3";
+
+    }
+
+
+    if (
+        /\bform\s*4\b/i.test(title) ||
+        /\bbook\s*4\b/i.test(title)
+    ) {
+
+        return "form 4";
+
+    }
+
+
+    /*
+       THIRD:
+       Detect from file path.
+
+       Examples:
+
+       Agriculture_Excel_&_Succeed_Book_3.pdf
+       Agriculture_Excel_&_Succeed_Book_4.pdf
+
+       Strides_in_Agriculture_Book_3.pdf
+       Strides_in_Agriculture_Book_4.pdf
+
+       Agriculture_Arise_Book_3.pdf
+       Agriculture_Arise_Book_4.pdf
+
+       Agriculture_Achievers_Book_4.pdf
+    */
+
+    if (
+        /book[_\s-]*3\b/i.test(filePath)
+    ) {
+
+        return "form 3";
+
+    }
+
+
+    if (
+        /book[_\s-]*4\b/i.test(filePath)
+    ) {
+
+        return "form 4";
+
+    }
+
+
+    /*
+       Also support simple "3" or "4"
+       near the end of the filename.
+    */
+
+    if (
+        /[_\s-]3\.pdf$/i.test(filePath)
+    ) {
+
+        return "form 3";
+
+    }
+
+
+    if (
+        /[_\s-]4\.pdf$/i.test(filePath)
+    ) {
+
+        return "form 4";
+
+    }
+
+
+    return "";
+
+}
+
+
+/* =====================================================
+   CHECK WHETHER BOOK BELONGS TO FORM
+===================================================== */
+
+function belongsToForm(book, form) {
+
+    const requestedForm =
+        normalizeText(form);
+
+
+    const bookClass =
+        normalizeText(
+            book.class ||
+            book.form ||
+            book.grade ||
+            ""
+        );
+
+
+    /*
+       CHANCO
+
+       Chanco is available for BOTH
+       Form 3 and Form 4.
+
+       We deliberately ignore the
+       class field for Chanco.
+    */
+
+    if (
+        isChancoBook(book)
+    ) {
+
+        return (
+            requestedForm === "form 3" ||
+            requestedForm === "form 4"
+        );
+
+    }
+
+
+    /*
+       PURE AND APPLIED
+
+       Pure and Applied is available
+       for BOTH Form 3 and Form 4.
+
+       We deliberately ignore the
+       class field for this book too.
+    */
+
+    if (
+        isPureAndAppliedBook(book)
+    ) {
+
+        return (
+            requestedForm === "form 3" ||
+            requestedForm === "form 4"
+        );
+
+    }
+
+
+    /*
+       AGRICULTURE
+
+       Agriculture MUST be separated.
+
+       Book 3 -> Form 3
+       Book 4 -> Form 4
+    */
+
+    if (
+        isAgricultureBook(book)
+    ) {
+
+        const agricultureForm =
+            getAgricultureForm(book);
+
+
+        return (
+            agricultureForm === requestedForm
+        );
+
+    }
+
+
+    /*
+       NORMAL BOOKS
+
+       Normal books continue using
+       their class/form value.
+    */
+
+    if (
+        bookClass === requestedForm
+    ) {
+
+        return true;
+
+    }
+
+
+    /*
+       Also support books marked
+       as Form 3 and 4.
+    */
+
+    const bothForms = [
+
+        "form 3 and 4",
+        "form 3 & 4",
+        "form 3/4",
+        "form 3-4",
+        "form 3 - 4",
+        "3 and 4",
+        "3 & 4",
+        "3/4",
+        "3-4"
+
+    ];
+
+
+    if (
+        bothForms.includes(bookClass)
+    ) {
+
+        return true;
+
+    }
+
+
+    return false;
+
+}
+
+
+/* =====================================================
+   GET SUBJECT NAME
+===================================================== */
+
+function getSubject(book) {
+
+    if (
+        book.subject &&
+        String(book.subject).trim() !== ""
+    ) {
+
+        return book.subject;
+
+    }
+
+
+    if (
+        book.subject_name &&
+        String(book.subject_name).trim() !== ""
+    ) {
+
+        return book.subject_name;
+
+    }
+
+
+    const title =
+        normalizeText(
+            book.title
+        );
+
+
+    const filePath =
+        normalizeText(
+            book.file_path ||
+            book.filePath ||
+            ""
+        );
+
+
+    /*
+       Agriculture fallback.
+    */
+
+    if (
+        title.includes("agriculture") ||
+        filePath.includes("agriculture") ||
+        filePath.includes("strides_in_agriculture")
+    ) {
+
+        return "Agriculture";
+
+    }
+
+
+    /*
+       Additional Mathematics fallback.
+    */
+
+    if (
+        title.includes("additional") &&
+        title.includes("mathematics")
+    ) {
+
+        return "Additional Mathematics";
+
+    }
+
+
+    return "Other";
+
+}
+
+
+/* =====================================================
+   REMOVE DUPLICATE BOOKS
+===================================================== */
+
+function removeDuplicateBooks(books) {
+
+    const result = [];
+
+    const seen = new Set();
+
+
+    books.forEach(
+        function(book) {
+
+            const title =
+                normalizeText(
+                    book.title
+                );
+
+
+            const filePath =
+                normalizeText(
+                    book.file_path ||
+                    book.filePath ||
+                    ""
+                );
+
+
+            /*
+               Prefer the storage file path
+               as the unique identifier.
+            */
+
+            const key =
+                filePath ||
+                title;
+
+
+            if (!key) {
+
+                return;
+
+            }
+
+
+            if (
+                seen.has(key)
+            ) {
+
+                return;
+
+            }
+
+
+            seen.add(key);
+
+
+            result.push(
+                book
+            );
+
+        }
+    );
+
+
+    return result;
+
+}
+
+
+/* =====================================================
+   SHOW SELECTED FORM
+===================================================== */
+
+async function showForm(form) {
+
+    selectedForm = form;
+
+
+    document.getElementById(
+        "formTitle"
+    ).textContent =
+        form + " Subjects";
+
+
+    document.getElementById(
+        "booksSection"
+    ).style.display =
+        "none";
+
+
+    const subjectBox =
+        document.getElementById(
+            "subjects"
+        );
+
+
+    subjectBox.innerHTML = `
+
+        <div style="padding:20px;">
+
+            <i class="fas fa-spinner fa-spin"></i>
+
+            Loading ${escapeHTML(form)}
+            subjects...
+
+        </div>
+
+    `;
+
+
+    /*
+       Load materials if they haven't
+       been loaded yet.
+    */
+
+    if (
+        allMaterials.length === 0
+    ) {
+
+        await loadLibraryMaterials();
+
+    }
+
+
+    const subjects = {};
+
+
+    allMaterials.forEach(
+        function(book) {
+
+            if (
+                !belongsToForm(
+                    book,
+                    form
+                )
+            ) {
+
+                return;
+
+            }
+
+
+            const subject =
+                getSubject(book);
+
+
+            if (
+                !subjects[subject]
+            ) {
+
+                subjects[subject] = [];
+
+            }
+
+
+            subjects[subject].push(
+                book
+            );
+
+        }
+    );
+
+
+    /*
+       Remove duplicates.
+
+       Agriculture books are already
+       separated by form before this
+       function is called.
+    */
+
+    Object.keys(subjects).forEach(
+        function(subject) {
+
+            subjects[subject] =
+                removeDuplicateBooks(
+                    subjects[subject]
+                );
+
+        }
+    );
+
+
+    console.log(
+        form + " subjects:",
+        subjects
+    );
+
+
+    loadSubjects(
+        subjects
+    );
+
+}
+
+
+/* =====================================================
+   LOAD SUBJECT CARDS
+===================================================== */
+
+function loadSubjects(subjects) {
+
+    const subjectBox =
+        document.getElementById(
+            "subjects"
+        );
+
+
+    subjectBox.innerHTML = "";
+
+
+    const subjectNames =
+        Object.keys(subjects)
+            .sort();
+
+
+    if (
+        subjectNames.length === 0
+    ) {
+
+        subjectBox.innerHTML = `
+
+            <div class="empty-library">
+
+                <i class="fas fa-folder-open"></i>
+
+                <h3>
+                    No Subjects Available
+                </h3>
+
+                <p>
+                    There are currently no books
+                    uploaded for
+                    ${escapeHTML(selectedForm)}.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    subjectNames.forEach(
+        function(subject) {
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "library-subject-card";
+
+
+            card.innerHTML = `
+
+                <div class="subject-icon">
+
+                    <i class="fas fa-book"></i>
+
+                </div>
+
+                <h3>
+                    ${escapeHTML(subject)}
+                </h3>
+
+                <p>
+                    ${subjects[subject].length}
+                    book${subjects[subject].length === 1 ? "" : "s"}
+                </p>
+
+            `;
+
+
+            card.addEventListener(
+                "click",
+                function() {
+
+                    showBooks(
+                        subject,
+                        subjects[subject]
+                    );
+
+                }
+            );
+
+
+            subjectBox.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   SHOW BOOKS
+===================================================== */
+
+function showBooks(
+    subject,
+    books
+) {
+
+    const booksSection =
+        document.getElementById(
+            "booksSection"
+        );
+
+
+    booksSection.style.display =
+        "block";
+
+
+    document.getElementById(
+        "subjectTitle"
+    ).textContent =
+        subject +
+        " — Available Books";
+
+
+    const bookBox =
+        document.getElementById(
+            "books"
+        );
+
+
+    bookBox.innerHTML = "";
+
+
+    /*
+       Make absolutely sure duplicate
+       records cannot appear.
+    */
+
+    books =
+        removeDuplicateBooks(
+            books || []
+        );
+
+
+    if (
+        books.length === 0
+    ) {
+
+        bookBox.innerHTML = `
+
+            <div class="empty-library">
+
+                <i class="fas fa-book-open"></i>
+
+                <h3>
+                    No Books Available
+                </h3>
+
+                <p>
+                    There are currently no books
+                    uploaded for
+                    ${escapeHTML(subject)}.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    books.forEach(
+        function(book) {
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "library-book-card";
+
+
+            card.setAttribute(
+                "data-book",
+                (
+                    String(
+                        book.title || ""
+                    ) +
+                    " " +
+                    String(
+                        book.description || ""
+                    )
+                ).toLowerCase()
+            );
+
+
+            /* =========================================
+               PDF ICON
+            ========================================= */
+
+            const icon =
+                document.createElement(
+                    "div"
+                );
+
+
+            icon.className =
+                "book-icon";
+
+
+            icon.innerHTML = `
+
+                <i class="fas fa-file-pdf"></i>
+
+            `;
+
+
+            /* =========================================
+               BOOK INFORMATION
+            ========================================= */
+
+            const info =
+                document.createElement(
+                    "div"
+                );
+
+
+            info.className =
+                "book-info";
+
+
+            info.innerHTML = `
+
+                <h3>
+                    ${escapeHTML(
+                        book.title ||
+                        "Untitled Book"
+                    )}
+                </h3>
+
+                <p>
+                    ${escapeHTML(
+                        book.description ||
+                        "MalCert Digital Library"
+                    )}
+                </p>
+
+                <span class="book-type">
+
+                    <i class="fas fa-file-pdf"></i>
+
+                    PDF
+
+                </span>
+
+            `;
+
+
+            /* =========================================
+               ACTIONS
+            ========================================= */
+
+            const actions =
+                document.createElement(
+                    "div"
+                );
+
+
+            actions.className =
+                "book-actions";
+
+
+            const viewButton =
+                document.createElement(
+                    "button"
+                );
+
+
+            viewButton.type =
+                "button";
+
+
+            viewButton.className =
+                "view-book-btn";
+
+
+            viewButton.innerHTML = `
+
+                <i class="fas fa-eye"></i>
+
+                View
+
+            `;
+
+
+            viewButton.addEventListener(
+                "click",
+                function() {
+
+                    viewBook(
+                        book
+                    );
+
+                }
+            );
+
+
+            actions.appendChild(
+                viewButton
+            );
+
+
+            /* =========================================
+               BUILD CARD
+            ========================================= */
+
+            card.appendChild(
+                icon
+            );
+
+
+            card.appendChild(
+                info
+            );
+
+
+            card.appendChild(
+                actions
+            );
+
+
+            bookBox.appendChild(
+                card
+            );
+
+        }
+    );
+
+
+    booksSection.scrollIntoView({
+
+        behavior: "smooth",
+
+        block: "start"
+
+    });
+
+}
+
+
+/* =====================================================
+   VIEW BOOK
+===================================================== */
+
+function viewBook(book) {
+
+    const filePath =
+        book.file_path ||
+        book.filePath ||
+        "";
+
+
+    if (!filePath) {
+
+        alert(
+            "This book does not have a PDF file attached yet."
+        );
+
+
+        console.error(
+            "Missing file_path:",
+            book
+        );
+
+
+        return;
+
+    }
+
+
+    /*
+       Supabase bucket:
+       malcert
+    */
+
+    const { data } =
+        supabaseClient
+            .storage
+            .from("malcert")
+            .getPublicUrl(
+                filePath
+            );
+
+
+    if (
+        !data ||
+        !data.publicUrl
+    ) {
+
+        alert(
+            "Unable to create the PDF URL."
+        );
+
+        return;
+
+    }
+
+
+    console.log(
+        "Opening PDF:",
+        data.publicUrl
+    );
+
+
+    /*
+       VIEW ONLY.
+    */
+
+    window.open(
+        data.publicUrl,
+        "_blank",
+        "noopener,noreferrer"
+    );
+
+}
+
+
+/* =====================================================
+   SEARCH BOOKS
+===================================================== */
+
+function searchBooks() {
+
+    const input =
+        document.getElementById(
+            "bookSearch"
+        );
+
+
+    if (!input) {
+
+        return;
+
+    }
+
+
+    const search =
+        input.value
+            .toLowerCase()
+            .trim();
+
+
+    const books =
+        document.querySelectorAll(
+            ".library-book-card"
+        );
+
+
+    books.forEach(
+        function(book) {
+
+            const text =
+                book.getAttribute(
+                    "data-book"
+                ) || "";
+
+
+            book.style.display =
+                text.includes(search)
+                    ? "flex"
+                    : "none";
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   PAGE STARTUP
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        const search =
+            document.getElementById(
+                "bookSearch"
+            );
+
+
+        if (search) {
+
+            search.addEventListener(
+                "input",
+                searchBooks
+            );
+
+        }
+
+
+        loadLibraryMaterials();
+
+    }
+);
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>MalCert AI</title>
+
+
+    <!-- ==================================================
+         MAIN CSS
+    ================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+
+    <!-- ==================================================
+         GOOGLE FONT
+    ================================================== -->
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- ==================================================
+         FONT AWESOME
+    ================================================== -->
+
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- ==================================================
+         MATHJAX
+         Used to properly display mathematical equations
+    ================================================== -->
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [
+                    ['\\(', '\\)'],
+                    ['$', '$']
+                ],
+                displayMath: [
+                    ['\\[', '\\]'],
+                    ['$$', '$$']
+                ]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+
+    <script
+        async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+    ></script>
+
+</head>
+
+
+<body>
+
+
+<div class="dashboard">
+
+
+    <!-- ==================================================
+         SIDEBAR
+    ================================================== -->
+
+    <aside class="sidebar">
+
+
+        <div class="logo">
+
+            <a href="index.html">
+
+                <img
+                    src="logo.png"
+                    alt="MalCert Logo"
+                    class="round-img"
+                >
+
+            </a>
+
+
+            <h2>
+                MalCert
+            </h2>
+
+        </div>
+
+
+        <nav>
+
+
+            <a href="index.html">
+
+                <i class="fas fa-house"></i>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a href="library.html">
+
+                <i class="fas fa-book"></i>
+
+                <span>
+                    Digital Library
+                </span>
+
+            </a>
+
+
+            <a href="study-notes.html">
+
+                <i class="fas fa-note-sticky"></i>
+
+                <span>
+                    Study Notes
+                </span>
+
+            </a>
+
+
+            <a href="past-papers.html">
+
+                <i class="fas fa-file-lines"></i>
+
+                <span>
+                    Past Papers
+                </span>
+
+            </a>
+
+
+            <a
+                href="malcert-ai.html"
+                class="active"
+            >
+
+                <i class="fas fa-robot"></i>
+
+                <span>
+                    MalCert AI
+                </span>
+
+            </a>
+
+
+            <a href="settings.html">
+
+                <i class="fas fa-gear"></i>
+
+                <span>
+                    Settings
+                </span>
+
+            </a>
+
+
+            <a
+                href="#"
+                id="logoutBtn"
+            >
+
+                <i class="fas fa-right-from-bracket"></i>
+
+                <span>
+                    Logout
+                </span>
+
+            </a>
+
+
+        </nav>
+
+    </aside>
+
+
+    <!-- ==================================================
+         MAIN CONTENT
+    ================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- ==================================================
+             HEADER
+        ================================================== -->
+
+        <header>
+
+
+            <div class="search-box">
+
+                <i class="fas fa-search"></i>
+
+
+                <input
+                    type="text"
+                    id="aiSearch"
+                    placeholder="Search MalCert AI..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <div class="profile">
+
+
+                <!-- NOTIFICATION -->
+
+                <div class="notification">
+
+                    <i class="fas fa-bell"></i>
+
+                    <span class="badge">
+                        3
+                    </span>
+
+                </div>
+
+
+                <!-- USER -->
+
+                <div class="user">
+
+
+                    <div
+                        class="avatar"
+                        id="avatar"
+                    >
+                        AM
+                    </div>
+
+
+                    <div class="user-details">
+
+                        <h4 id="studentName">
+                            Alex Meja
+                        </h4>
+
+                        <small>
+                            MSCE Candidate
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ==================================================
+             AI HEADER
+        ================================================== -->
+
+        <section class="welcome">
+
+
+            <div class="welcome-content">
+
+
+                <h1>
+
+                    Meet
+
+                    <span>
+                        MalCert AI
+                    </span>
+
+                </h1>
+
+
+                <p>
+
+                    Your AI study assistant for MSCE
+                    questions, explanations and revision.
+
+                </p>
+
+
+                <button
+                    class="primary-btn"
+                    type="button"
+                    onclick="focusQuestion()"
+                >
+
+                    <i class="fas fa-robot"></i>
+
+                    Ask MalCert AI
+
+                </button>
+
+
+            </div>
+
+
+            <div class="student-photo">
+
+
+                <div
+                    style="
+                    width:100%;
+                    height:100%;
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                    font-size:90px;
+                    color:#ffffff;
+                    "
+                >
+
+                    <i class="fas fa-robot"></i>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ==================================================
+             AI CONTENT
+        ================================================== -->
+
+        <section style="margin-top:30px;">
+
+
+            <div class="section-title">
+
+                <h2>
+                    How can I help you?
+                </h2>
+
+            </div>
+
+
+            <!-- ==================================================
+                 CHAT BOX
+            ================================================== -->
+
+            <div
+                id="chatBox"
+                style="
+                background:#ffffff;
+                border-radius:18px;
+                padding:25px;
+                min-height:320px;
+                box-shadow:0 5px 20px rgba(0,0,0,0.06);
+                "
+            >
+
+
+                <!-- AI INTRODUCTION -->
+
+                <div
+                    style="
+                    display:flex;
+                    gap:15px;
+                    align-items:flex-start;
+                    margin-bottom:25px;
+                    "
+                >
+
+
+                    <div
+                        style="
+                        min-width:45px;
+                        width:45px;
+                        height:45px;
+                        border-radius:50%;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        background:#6c3cff;
+                        color:#fff;
+                        "
+                    >
+
+                        <i class="fas fa-robot"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            MalCert AI
+                        </strong>
+
+
+                        <p style="margin-top:5px;">
+
+                            Hello! I'm MalCert AI.
+                            Ask me an MSCE question and
+                            I'll help you understand it.
+
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- MESSAGES -->
+
+                <div id="messages"></div>
+
+
+                <!-- ==================================================
+                     QUESTION AREA
+                ================================================== -->
+
+                <div
+                    style="
+                    display:flex;
+                    gap:10px;
+                    margin-top:30px;
+                    "
+                >
+
+
+                    <input
+                        type="text"
+                        id="question"
+                        placeholder="Ask an MSCE question..."
+                        autocomplete="off"
+                        style="
+                        flex:1;
+                        padding:15px 18px;
+                        border:1px solid #ddd;
+                        border-radius:12px;
+                        outline:none;
+                        font-family:Poppins,sans-serif;
+                        "
+                    >
+
+
+                    <button
+                        type="button"
+                        class="primary-btn"
+                        id="askButton"
+                        onclick="askAI()"
+                    >
+
+                        <i class="fas fa-paper-plane"></i>
+
+                        Ask
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ==================================================
+         RIGHT PANEL
+    ================================================== -->
+
+    <aside class="right-panel">
+
+
+        <!-- ==================================================
+             EXAM COUNTDOWN
+        ================================================== -->
+
+        <a
+            href="exam-countdown.html"
+            class="dashboard-feature-card"
+        >
+
+
+            <div class="feature-icon exam-icon">
+
+                <i class="fas fa-calendar-days"></i>
+
+            </div>
+
+
+            <div class="feature-content">
+
+                <small>
+                    MSCE EXAMINATION
+                </small>
+
+
+                <h3>
+                    Exam Countdown
+                </h3>
+
+
+                <p>
+                    View the countdown to the
+                    MSCE examinations.
+                </p>
+
+            </div>
+
+
+            <div class="feature-arrow">
+
+                <i class="fas fa-arrow-right"></i>
+
+            </div>
+
+
+        </a>
+
+
+        <!-- ==================================================
+             RESOURCES
+        ================================================== -->
+
+        <a
+            href="resources.html"
+            class="dashboard-feature-card"
+        >
+
+
+            <div class="feature-icon syllabus-icon">
+
+                <i class="fas fa-file-circle-check"></i>
+
+            </div>
+
+
+            <div class="feature-content">
+
+                <small>
+                    EXAM RESOURCES
+                </small>
+
+
+                <h3>
+                    Syllabus & Chief Examiner Reports
+                </h3>
+
+
+                <p>
+                    Access subject syllabuses and
+                    Chief Examiner reports.
+                </p>
+
+            </div>
+
+
+            <div class="feature-arrow">
+
+                <i class="fas fa-arrow-right"></i>
+
+            </div>
+
+
+        </a>
+
+
+        <!-- ==================================================
+             STUDY GROUP
+        ================================================== -->
+
+        <a
+            href="study-group.html"
+            class="dashboard-feature-card"
+        >
+
+
+            <div class="feature-icon group-icon">
+
+                <i class="fas fa-users"></i>
+
+            </div>
+
+
+            <div class="feature-content">
+
+                <small>
+                    STUDENT COMMUNITY
+                </small>
+
+
+                <h3>
+                    Study Group
+                </h3>
+
+
+                <p>
+                    Discuss, ask questions and
+                    learn with other students.
+                </p>
+
+            </div>
+
+
+            <div class="feature-arrow">
+
+                <i class="fas fa-arrow-right"></i>
+
+            </div>
+
+
+        </a>
+
+
+    </aside>
+
+
+</div>
+
+
+<!-- ==================================================
+     EXISTING SCRIPT
+================================================== -->
+
+<script src="script.js"></script>
+
+
+<script>
+
+
+/* ==================================================
+   SUPABASE SETTINGS
+================================================== */
+
+const SUPABASE_FUNCTION_URL =
+    "https://qdodtmmomcyvvudqstbk.supabase.co/functions/v1/malcert-ai";
+
+
+const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_T5YgDR9MXGwi0SBawKpI2A_pMv-ytMb";
+
+
+/* ==================================================
+   FOCUS QUESTION
+================================================== */
+
+function focusQuestion() {
+
+    const input =
+        document.getElementById("question");
+
+
+    if (input) {
+
+        input.focus();
+
+    }
+
+}
+
+
+/* ==================================================
+   QUICK QUESTION
+================================================== */
+
+function setQuestion(text) {
+
+    const input =
+        document.getElementById("question");
+
+
+    if (input) {
+
+        input.value = text;
+
+        input.focus();
+
+    }
+
+}
+
+
+/* ==================================================
+   FORMAT AI RESPONSE
+================================================== */
+
+function formatAIAnswer(text) {
+
+    if (!text) {
+
+        return "Sorry, I couldn't generate an answer.";
+
+    }
+
+
+    let answer = String(text);
+
+
+    /*
+     * Escape HTML first so AI output
+     * cannot inject HTML into the page.
+     */
+
+    answer = escapeHTML(answer);
+
+
+    /*
+     * Convert code blocks.
+     */
+
+    answer = answer.replace(
+        /```([\s\S]*?)```/g,
+        function(match, code) {
+
+            return `
+                <pre style="
+                    background:#1f2937;
+                    color:#ffffff;
+                    padding:15px;
+                    border-radius:10px;
+                    overflow-x:auto;
+                    margin:15px 0;
+                ">${code.trim()}</pre>
+            `;
+
+        }
+    );
+
+
+    /*
+     * Convert headings.
+     */
+
+    answer = answer.replace(
+        /^### (.*)$/gm,
+        "<h3 style='margin:20px 0 8px;'>$1</h3>"
+    );
+
+
+    answer = answer.replace(
+        /^## (.*)$/gm,
+        "<h2 style='margin:22px 0 10px;'>$1</h2>"
+    );
+
+
+    answer = answer.replace(
+        /^# (.*)$/gm,
+        "<h2 style='margin:22px 0 10px;'>$1</h2>"
+    );
+
+
+    /*
+     * Convert bold text.
+     */
+
+    answer = answer.replace(
+        /\*\*(.*?)\*\*/g,
+        "<strong>$1</strong>"
+    );
+
+
+    /*
+     * Convert italic text.
+     */
+
+    answer = answer.replace(
+        /\*(.*?)\*/g,
+        "<em>$1</em>"
+    );
+
+
+    /*
+     * Convert horizontal rules.
+     */
+
+    answer = answer.replace(
+        /^---$/gm,
+        "<hr style='margin:20px 0;border:0;border-top:1px solid #ddd;'>"
+    );
+
+
+    /*
+     * Convert numbered lists.
+     */
+
+    answer = answer.replace(
+        /^\s*(\d+)\.\s+(.*)$/gm,
+        "<div style='margin:7px 0;'>$1. $2</div>"
+    );
+
+
+    /*
+     * Convert bullet lists.
+     */
+
+    answer = answer.replace(
+        /^\s*[-•]\s+(.*)$/gm,
+        "<div style='margin:7px 0;padding-left:10px;'>• $1</div>"
+    );
+
+
+    /*
+     * Convert line breaks.
+     */
+
+    answer = answer.replace(
+        /\n{2,}/g,
+        "<br><br>"
+    );
+
+
+    answer = answer.replace(
+        /\n/g,
+        "<br>"
+    );
+
+
+    /*
+     * Restore MathJax delimiters that were escaped.
+     */
+
+    answer = answer
+        .replace(/\\\(/g, "\\(")
+        .replace(/\\\)/g, "\\)")
+        .replace(/\\\[/g, "\\[")
+        .replace(/\\\]/g, "\\]")
+        .replace(/\\text\{/g, "\\text{")
+        .replace(/\\frac/g, "\\frac")
+        .replace(/\\times/g, "\\times")
+        .replace(/\\div/g, "\\div");
+
+
+    return answer;
+
+}
+
+
+/* ==================================================
+   ASK MALCERT AI
+================================================== */
+
+async function askAI() {
+
+
+    const input =
+        document.getElementById("question");
+
+
+    const messages =
+        document.getElementById("messages");
+
+
+    const button =
+        document.getElementById("askButton");
+
+
+    if (!input || !messages) {
+
+        return;
+
+    }
+
+
+    const question =
+        input.value.trim();
+
+
+    if (!question) {
+
+        input.focus();
+
+        return;
+
+    }
+
+
+    /* ==================================================
+       USER MESSAGE
+    ================================================== */
+
+    const userMessage =
+        document.createElement("div");
+
+
+    userMessage.style.cssText = `
+        margin:15px 0;
+        padding:14px 18px;
+        background:#f1edff;
+        border-radius:12px;
+        line-height:1.6;
+    `;
+
+
+    userMessage.innerHTML = `
+
+        <strong>
+            You
+        </strong>
+
+        <p style="margin-top:5px;">
+            ${escapeHTML(question)}
+        </p>
+
+    `;
+
+
+    messages.appendChild(userMessage);
+
+
+    /* ==================================================
+       AI MESSAGE
+    ================================================== */
+
+    const aiMessage =
+        document.createElement("div");
+
+
+    aiMessage.style.cssText = `
+        margin:15px 0;
+        padding:14px 18px;
+        background:#f7f7f7;
+        border-radius:12px;
+        line-height:1.7;
+    `;
+
+
+    aiMessage.innerHTML = `
+
+        <strong>
+
+            <i class="fas fa-robot"></i>
+
+            MalCert AI
+
+        </strong>
+
+
+        <div
+            class="thinkingMessage"
+            style="margin-top:8px;"
+        >
+
+            <i class="fas fa-spinner fa-spin"></i>
+
+            Thinking...
+
+        </div>
+
+    `;
+
+
+    messages.appendChild(aiMessage);
+
+
+    /* ==================================================
+       DISABLE INPUT
+    ================================================== */
+
+    input.value = "";
+
+    input.disabled = true;
+
+
+    if (button) {
+
+        button.disabled = true;
+
+    }
+
+
+    /* ==================================================
+       SCROLL
+    ================================================== */
+
+    document
+        .getElementById("chatBox")
+        .scrollIntoView({
+            behavior:"smooth",
+            block:"end"
+        });
+
+
+    try {
+
+
+        /* ==================================================
+           CALL SUPABASE EDGE FUNCTION
+        ================================================== */
+
+        const response =
+            await fetch(
+                SUPABASE_FUNCTION_URL,
+                {
+
+                    method:"POST",
+
+                    headers:{
+
+                        "Content-Type":
+                            "application/json",
+
+                        "apikey":
+                            SUPABASE_PUBLISHABLE_KEY,
+
+                        "Authorization":
+                            "Bearer " +
+                            SUPABASE_PUBLISHABLE_KEY
+
+                    },
+
+                    body:JSON.stringify({
+
+                        question:question
+
+                    })
+
+                }
+            );
+
+
+        /* ==================================================
+           READ RESPONSE
+        ================================================== */
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "MalCert AI response:",
+            data
+        );
+
+
+        /* ==================================================
+           CHECK SERVER ERROR
+        ================================================== */
+
+        if (!response.ok) {
+
+            throw new Error(
+
+                data.error ||
+
+                data.message ||
+
+                "MalCert AI could not answer the question."
+
+            );
+
+        }
+
+
+        /* ==================================================
+           REMOVE THINKING
+        ================================================== */
+
+        const thinking =
+            aiMessage.querySelector(
+                ".thinkingMessage"
+            );
+
+
+        if (thinking) {
+
+            thinking.remove();
+
+        }
+
+
+        /* ==================================================
+           AI ANSWER
+        ================================================== */
+
+        const answer =
+            document.createElement("div");
+
+
+        answer.className =
+            "ai-answer";
+
+
+        answer.style.cssText = `
+            margin-top:10px;
+            line-height:1.8;
+            font-size:15px;
+            word-wrap:break-word;
+            overflow-wrap:anywhere;
+        `;
+
+
+        /*
+         * The Edge Function returns:
+         *
+         * {
+         *     "answer": "..."
+         * }
+         */
+
+        answer.innerHTML =
+            formatAIAnswer(
+                data.answer
+            );
+
+
+        aiMessage.appendChild(answer);
+
+
+        /* ==================================================
+           TELL MATHJAX TO RENDER EQUATIONS
+        ================================================== */
+
+        if (
+            window.MathJax &&
+            window.MathJax.typesetPromise
+        ) {
+
+            try {
+
+                await window.MathJax.typesetPromise([
+                    answer
+                ]);
+
+            } catch (mathError) {
+
+                console.warn(
+                    "MathJax rendering error:",
+                    mathError
+                );
+
+            }
+
+        }
+
+
+        /* ==================================================
+           SCROLL TO ANSWER
+        ================================================== */
+
+        aiMessage.scrollIntoView({
+
+            behavior:"smooth",
+
+            block:"nearest"
+
+        });
+
+
+    }
+
+
+    catch (error) {
+
+
+        console.error(
+            "MalCert AI Error:",
+            error
+        );
+
+
+        const thinking =
+            aiMessage.querySelector(
+                ".thinkingMessage"
+            );
+
+
+        if (thinking) {
+
+            thinking.innerHTML = `
+
+                <span
+                    style="
+                    color:#d93025;
+                    line-height:1.6;
+                    "
+                >
+
+                    <i
+                        class="fas fa-circle-exclamation"
+                    ></i>
+
+                    ${escapeHTML(
+                        error.message ||
+                        "MalCert AI could not answer the question."
+                    )}
+
+                </span>
+
+            `;
+
+        }
+
+
+    }
+
+
+    finally {
+
+
+        /* ==================================================
+           ENABLE INPUT
+        ================================================== */
+
+        input.disabled = false;
+
+
+        if (button) {
+
+            button.disabled = false;
+
+        }
+
+
+        input.focus();
+
+    }
+
+}
+
+
+/* ==================================================
+   ESCAPE HTML
+================================================== */
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement("div");
+
+
+    div.textContent =
+        text;
+
+
+    return div.innerHTML;
+
+}
+
+
+/* ==================================================
+   ENTER KEY
+================================================== */
+
+document
+    .getElementById("question")
+    ?.addEventListener(
+        "keydown",
+        function(event) {
+
+
+            if (
+                event.key === "Enter" &&
+                !event.shiftKey
+            ) {
+
+
+                event.preventDefault();
+
+
+                askAI();
+
+            }
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+</html>

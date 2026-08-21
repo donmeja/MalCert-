@@ -4486,3 +4486,156 @@ body.dark-mode .setting-input input {
         min-height: 47px;
     }
 }
+/* ==================================================
+   MALCERT GOOGLE ADS SECTION
+   ================================================== */
+
+.malcert-ad-section {
+    width: 100%;
+    min-height: 137px;
+    margin-bottom: 35px;
+
+    background: #ffffff;
+    border-radius: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    position: sticky;
+    top: 10px;
+    z-index: 20;
+
+    box-sizing: border-box;
+}
+
+/* Google AdSense container */
+.malcert-ad-section .adsbygoogle {
+    display: block;
+    width: 100%;
+    min-height: 137px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .malcert-ad-section {
+        min-height: 137px;
+        margin-bottom: 25px;
+        border-radius: 20px;
+        top: 5px;
+    }
+
+    .malcert-ad-section .adsbygoogle {
+        min-height: 137px;
+    }
+}
+/* ==================================================
+   MALCERT AI ANSWER FORMATTING
+================================================== */
+
+.malcert-ai-answer p {
+    margin: 0 0 14px 0;
+}
+
+.malcert-ai-answer h1,
+.malcert-ai-answer h2,
+.malcert-ai-answer h3,
+.malcert-ai-answer h4 {
+    margin: 18px 0 10px 0;
+    line-height: 1.4;
+}
+
+.malcert-ai-answer h1 {
+    font-size: 22px;
+}
+
+.malcert-ai-answer h2 {
+    font-size: 20px;
+}
+
+.malcert-ai-answer h3 {
+    font-size: 18px;
+}
+
+.malcert-ai-answer ul,
+.malcert-ai-answer ol {
+    margin: 10px 0 15px 25px;
+    padding: 0;
+}
+
+.malcert-ai-answer li {
+    margin-bottom: 7px;
+}
+
+.malcert-ai-answer strong {
+    font-weight: 600;
+}
+
+.malcert-ai-answer blockquote {
+    margin: 15px 0;
+    padding: 10px 15px;
+    border-left: 4px solid #6c3cff;
+    background: #f5f2ff;
+    border-radius: 6px;
+}
+
+.malcert-ai-answer code {
+    padding: 2px 6px;
+    border-radius: 5px;
+    background: #eeeeee;
+    font-family: monospace;
+}
+
+.malcert-ai-answer pre {
+    padding: 15px;
+    overflow-x: auto;
+    border-radius: 10px;
+    background: #1e1e1e;
+    color: #ffffff;
+}
+
+.malcert-ai-answer pre code {
+    padding: 0;
+    background: transparent;
+    color: inherit;
+}
+
+.malcert-ai-answer hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+}
+
+/* MathJax equations */
+
+.malcert-ai-answer mjx-container {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .malcert-ai-answer {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .malcert-ai-answer h1 {
+        font-size: 20px;
+    }
+
+    .malcert-ai-answer h2 {
+        font-size: 18px;
+    }
+
+    .malcert-ai-answer h3 {
+        font-size: 17px;
+    }
+
+}

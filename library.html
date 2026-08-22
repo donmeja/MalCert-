@@ -18,6 +18,536 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         rel="stylesheet"
     >
+
+    <!-- PDF.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+    <style>
+
+        /* ==================================================
+           MALCERT PDF READER
+        ================================================== */
+
+        #malcertPdfReader {
+
+            position: fixed;
+
+            inset: 0;
+
+            width: 100vw;
+
+            height: 100vh;
+
+            background: #111;
+
+            z-index: 999999;
+
+            display: none;
+
+            flex-direction: column;
+
+            overflow: hidden;
+
+        }
+
+
+        #malcertPdfReader.active {
+
+            display: flex;
+
+        }
+
+
+        /* ==================================================
+           READER HEADER
+        ================================================== */
+
+        .pdf-reader-header {
+
+            height: 64px;
+
+            min-height: 64px;
+
+            background: #ffffff;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 18px;
+
+            box-shadow: 0 2px 10px rgba(
+                0,
+                0,
+                0,
+                0.20
+            );
+
+            z-index: 10;
+
+        }
+
+
+        .pdf-reader-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            min-width: 0;
+
+        }
+
+
+        .pdf-reader-title i {
+
+            color: #e53935;
+
+            font-size: 22px;
+
+        }
+
+
+        #pdfBookTitle {
+
+            margin: 0;
+
+            font-size: 16px;
+
+            font-weight: 600;
+
+            color: #222;
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+
+            max-width: 45vw;
+
+        }
+
+
+        /* ==================================================
+           READER CONTROLS
+        ================================================== */
+
+        .pdf-reader-controls {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+        }
+
+
+        .pdf-reader-button {
+
+            width: 40px;
+
+            height: 40px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #f1f3f5;
+
+            color: #222;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 15px;
+
+            transition: 0.2s ease;
+
+        }
+
+
+        .pdf-reader-button:hover {
+
+            background: #e2e6ea;
+
+        }
+
+
+        .pdf-reader-button:disabled {
+
+            opacity: 0.4;
+
+            cursor: not-allowed;
+
+        }
+
+
+        .pdf-close-button {
+
+            background: #e53935;
+
+            color: #ffffff;
+
+            margin-left: 6px;
+
+        }
+
+
+        .pdf-close-button:hover {
+
+            background: #c62828;
+
+        }
+
+
+        /* ==================================================
+           PAGE INFORMATION
+        ================================================== */
+
+        .pdf-page-info {
+
+            min-width: 90px;
+
+            height: 40px;
+
+            padding: 0 10px;
+
+            border-radius: 8px;
+
+            background: #f1f3f5;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 5px;
+
+            font-size: 13px;
+
+            color: #333;
+
+            font-weight: 500;
+
+        }
+
+
+        #pdfPageInput {
+
+            width: 42px;
+
+            height: 28px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 5px;
+
+            text-align: center;
+
+            font-family: Poppins, sans-serif;
+
+            font-size: 13px;
+
+            background: #fff;
+
+        }
+
+
+        /* ==================================================
+           PDF CONTENT AREA
+        ================================================== */
+
+        .pdf-reader-body {
+
+            flex: 1;
+
+            overflow: auto;
+
+            background: #2b2b2b;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: flex-start;
+
+            padding: 25px;
+
+            -webkit-user-select: none;
+
+            user-select: none;
+
+        }
+
+
+        .pdf-page-wrapper {
+
+            position: relative;
+
+            display: inline-block;
+
+            box-shadow:
+                0 5px 25px rgba(
+                    0,
+                    0,
+                    0,
+                    0.45
+                );
+
+            background: #ffffff;
+
+        }
+
+
+        #pdfCanvas {
+
+            display: block;
+
+            background: #ffffff;
+
+            max-width: none;
+
+        }
+
+
+        /* ==================================================
+           LOADING
+        ================================================== */
+
+        #pdfLoading {
+
+            position: absolute;
+
+            inset: 0;
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-direction: column;
+
+            gap: 12px;
+
+            background: #2b2b2b;
+
+            color: #ffffff;
+
+            z-index: 20;
+
+        }
+
+
+        #pdfLoading.active {
+
+            display: flex;
+
+        }
+
+
+        #pdfLoading i {
+
+            font-size: 35px;
+
+        }
+
+
+        #pdfLoadingText {
+
+            font-size: 14px;
+
+            font-family: Poppins, sans-serif;
+
+        }
+
+
+        /* ==================================================
+           ERROR
+        ================================================== */
+
+        #pdfError {
+
+            position: absolute;
+
+            inset: 0;
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-direction: column;
+
+            text-align: center;
+
+            padding: 30px;
+
+            color: #ffffff;
+
+            background: #2b2b2b;
+
+            z-index: 25;
+
+        }
+
+
+        #pdfError.active {
+
+            display: flex;
+
+        }
+
+
+        #pdfError i {
+
+            font-size: 45px;
+
+            color: #e53935;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        #pdfError h3 {
+
+            margin: 0 0 8px;
+
+            font-family: Poppins, sans-serif;
+
+        }
+
+
+        #pdfError p {
+
+            margin: 0;
+
+            opacity: 0.8;
+
+            font-family: Poppins, sans-serif;
+
+        }
+
+
+        /* ==================================================
+           MOBILE
+        ================================================== */
+
+        @media (max-width: 768px) {
+
+            .pdf-reader-header {
+
+                height: 58px;
+
+                min-height: 58px;
+
+                padding: 0 8px;
+
+            }
+
+
+            .pdf-reader-title {
+
+                gap: 7px;
+
+                max-width: 42%;
+
+            }
+
+
+            .pdf-reader-title i {
+
+                font-size: 18px;
+
+            }
+
+
+            #pdfBookTitle {
+
+                font-size: 12px;
+
+                max-width: 100%;
+
+            }
+
+
+            .pdf-reader-controls {
+
+                gap: 3px;
+
+            }
+
+
+            .pdf-reader-button {
+
+                width: 34px;
+
+                height: 34px;
+
+                font-size: 12px;
+
+            }
+
+
+            .pdf-page-info {
+
+                min-width: 72px;
+
+                height: 34px;
+
+                padding: 0 5px;
+
+                font-size: 11px;
+
+            }
+
+
+            #pdfPageInput {
+
+                width: 32px;
+
+                height: 24px;
+
+                font-size: 11px;
+
+            }
+
+
+            .pdf-reader-body {
+
+                padding: 12px;
+
+            }
+
+        }
+
+
+        /* ==================================================
+           EXTRA PROTECTION
+        ================================================== */
+
+        #pdfCanvas {
+
+            -webkit-touch-callout: none;
+
+        }
+
+    </style>
+
 </head>
 
 <body>
@@ -31,47 +561,79 @@
         <div class="logo">
 
             <a href="index.html">
+
                 <img
                     src="logo.png"
                     alt="MalCert Logo"
                     class="round-img"
                 >
+
             </a>
 
             <h2>MalCert</h2>
 
         </div>
 
+
         <nav>
 
             <a href="index.html">
+
                 <i class="fas fa-house"></i>
+
                 <span>Dashboard</span>
+
             </a>
 
-            <a href="library.html" class="active">
+
+            <a
+                href="library.html"
+                class="active"
+            >
+
                 <i class="fas fa-book"></i>
+
                 <span>Digital Library</span>
+
             </a>
+
 
             <a href="study-notes.html">
+
                 <i class="fas fa-note-sticky"></i>
+
                 <span>Study Notes</span>
+
             </a>
+
 
             <a href="past-papers.html">
+
                 <i class="fas fa-file-lines"></i>
+
                 <span>Past Papers</span>
+
             </a>
+
 
             <a href="settings.html">
+
                 <i class="fas fa-gear"></i>
+
                 <span>Settings</span>
+
             </a>
 
-            <a href="#" id="logoutBtn">
+
+            <a
+                href="#"
+                id="logoutBtn"
+            >
+
                 <i class="fas fa-right-from-bracket"></i>
+
                 <span>Logout</span>
+
             </a>
 
         </nav>
@@ -98,15 +660,22 @@
 
             </div>
 
+
             <div class="profile">
 
                 <div
                     class="notification"
                     id="notification"
                 >
+
                     <i class="fas fa-bell"></i>
-                    <span class="badge">3</span>
+
+                    <span class="badge">
+                        3
+                    </span>
+
                 </div>
+
 
                 <div class="user">
 
@@ -116,6 +685,7 @@
                     >
                         ST
                     </div>
+
 
                     <div class="user-details">
 
@@ -155,6 +725,7 @@
                 Select Class
             </h3>
 
+
             <div class="class-selection">
 
                 <button
@@ -164,6 +735,7 @@
                 >
                     Form 3
                 </button>
+
 
                 <button
                     class="class-btn"
@@ -187,6 +759,7 @@
             </h2>
 
         </div>
+
 
         <div
             class="library-subjects"
@@ -219,6 +792,7 @@
 
             </div>
 
+
             <div
                 class="library-books"
                 id="books"
@@ -239,8 +813,11 @@
         >
 
             <div class="feature-icon exam-icon">
+
                 <i class="fas fa-calendar-days"></i>
+
             </div>
+
 
             <div class="feature-content">
 
@@ -259,8 +836,11 @@
 
             </div>
 
+
             <div class="feature-arrow">
+
                 <i class="fas fa-arrow-right"></i>
+
             </div>
 
         </a>
@@ -272,8 +852,11 @@
         >
 
             <div class="feature-icon syllabus-icon">
+
                 <i class="fas fa-file-circle-check"></i>
+
             </div>
+
 
             <div class="feature-content">
 
@@ -292,8 +875,11 @@
 
             </div>
 
+
             <div class="feature-arrow">
+
                 <i class="fas fa-arrow-right"></i>
+
             </div>
 
         </a>
@@ -305,8 +891,11 @@
         >
 
             <div class="feature-icon ai-icon">
+
                 <i class="fas fa-robot"></i>
+
             </div>
+
 
             <div class="feature-content">
 
@@ -325,8 +914,11 @@
 
             </div>
 
+
             <div class="feature-arrow">
+
                 <i class="fas fa-arrow-right"></i>
+
             </div>
 
         </a>
@@ -338,8 +930,11 @@
         >
 
             <div class="feature-icon group-icon">
+
                 <i class="fas fa-users"></i>
+
             </div>
+
 
             <div class="feature-content">
 
@@ -358,8 +953,11 @@
 
             </div>
 
+
             <div class="feature-arrow">
+
                 <i class="fas fa-arrow-right"></i>
+
             </div>
 
         </a>
@@ -370,7 +968,186 @@
 
 
 <!-- ==================================================
-     SUPABASE LIBRARY
+     MALCERT PDF READER
+================================================== -->
+
+<div
+    id="malcertPdfReader"
+    aria-hidden="true"
+>
+
+    <!-- ================= READER HEADER ================= -->
+
+    <div class="pdf-reader-header">
+
+        <div class="pdf-reader-title">
+
+            <i class="fas fa-file-pdf"></i>
+
+            <h3 id="pdfBookTitle">
+                MalCert Digital Library
+            </h3>
+
+        </div>
+
+
+        <div class="pdf-reader-controls">
+
+            <!-- PREVIOUS PAGE -->
+
+            <button
+                type="button"
+                class="pdf-reader-button"
+                id="pdfPrevButton"
+                title="Previous page"
+            >
+
+                <i class="fas fa-chevron-left"></i>
+
+            </button>
+
+
+            <!-- PAGE NUMBER -->
+
+            <div class="pdf-page-info">
+
+                <input
+                    type="number"
+                    id="pdfPageInput"
+                    min="1"
+                    value="1"
+                    aria-label="Page number"
+                >
+
+                <span>
+                    /
+                </span>
+
+                <span id="pdfTotalPages">
+                    0
+                </span>
+
+            </div>
+
+
+            <!-- NEXT PAGE -->
+
+            <button
+                type="button"
+                class="pdf-reader-button"
+                id="pdfNextButton"
+                title="Next page"
+            >
+
+                <i class="fas fa-chevron-right"></i>
+
+            </button>
+
+
+            <!-- ZOOM OUT -->
+
+            <button
+                type="button"
+                class="pdf-reader-button"
+                id="pdfZoomOut"
+                title="Zoom out"
+            >
+
+                <i class="fas fa-minus"></i>
+
+            </button>
+
+
+            <!-- ZOOM IN -->
+
+            <button
+                type="button"
+                class="pdf-reader-button"
+                id="pdfZoomIn"
+                title="Zoom in"
+            >
+
+                <i class="fas fa-plus"></i>
+
+            </button>
+
+
+            <!-- CLOSE -->
+
+            <button
+                type="button"
+                class="pdf-reader-button pdf-close-button"
+                id="pdfCloseButton"
+                title="Close reader"
+            >
+
+                <i class="fas fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= READER BODY ================= -->
+
+    <div
+        class="pdf-reader-body"
+        id="pdfReaderBody"
+    >
+
+        <div
+            class="pdf-page-wrapper"
+            id="pdfPageWrapper"
+        >
+
+            <canvas
+                id="pdfCanvas"
+            ></canvas>
+
+        </div>
+
+
+        <!-- LOADING -->
+
+        <div
+            id="pdfLoading"
+            class="active"
+        >
+
+            <i class="fas fa-spinner fa-spin"></i>
+
+            <div id="pdfLoadingText">
+                Loading book...
+            </div>
+
+        </div>
+
+
+        <!-- ERROR -->
+
+        <div id="pdfError">
+
+            <i class="fas fa-circle-exclamation"></i>
+
+            <h3>
+                Unable to open this book
+            </h3>
+
+            <p id="pdfErrorMessage">
+                Please try again.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ==================================================
+     SUPABASE
 ================================================== -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -379,11 +1156,26 @@
 <script>
 
 /* =====================================================
+   PDF.JS CONFIGURATION
+===================================================== */
+
+if (
+    window.pdfjsLib
+) {
+
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+}
+
+
+/* =====================================================
    SUPABASE CONFIGURATION
 ===================================================== */
 
 const SUPABASE_URL =
     "https://qdodtmmomcyvvudqstbk.supabase.co";
+
 
 const SUPABASE_KEY =
     "sb_publishable_T5YgDR9MXGwi0SBawKpI2A_pMv-ytMb";
@@ -406,13 +1198,916 @@ let allMaterials = [];
 
 
 /* =====================================================
+   PDF READER VARIABLES
+===================================================== */
+
+let currentPDF = null;
+
+let currentPDFPage = 1;
+
+let currentPDFScale = 1.25;
+
+let currentPDFUrl = "";
+
+let pdfRendering = false;
+
+let pdfRenderPending = null;
+
+
+/* =====================================================
+   PDF READER ELEMENTS
+===================================================== */
+
+const pdfReader =
+    document.getElementById(
+        "malcertPdfReader"
+    );
+
+
+const pdfCanvas =
+    document.getElementById(
+        "pdfCanvas"
+    );
+
+
+const pdfContext =
+    pdfCanvas.getContext(
+        "2d"
+    );
+
+
+const pdfLoading =
+    document.getElementById(
+        "pdfLoading"
+    );
+
+
+const pdfLoadingText =
+    document.getElementById(
+        "pdfLoadingText"
+    );
+
+
+const pdfError =
+    document.getElementById(
+        "pdfError"
+    );
+
+
+const pdfErrorMessage =
+    document.getElementById(
+        "pdfErrorMessage"
+    );
+
+
+const pdfPageInput =
+    document.getElementById(
+        "pdfPageInput"
+    );
+
+
+const pdfTotalPages =
+    document.getElementById(
+        "pdfTotalPages"
+    );
+
+
+const pdfPrevButton =
+    document.getElementById(
+        "pdfPrevButton"
+    );
+
+
+const pdfNextButton =
+    document.getElementById(
+        "pdfNextButton"
+    );
+
+
+const pdfZoomOut =
+    document.getElementById(
+        "pdfZoomOut"
+    );
+
+
+const pdfZoomIn =
+    document.getElementById(
+        "pdfZoomIn"
+    );
+
+
+const pdfCloseButton =
+    document.getElementById(
+        "pdfCloseButton"
+    );
+
+
+const pdfBookTitle =
+    document.getElementById(
+        "pdfBookTitle"
+    );
+
+
+/* =====================================================
+   SHOW PDF LOADING
+===================================================== */
+
+function showPDFLoading(
+    message = "Loading book..."
+) {
+
+    pdfLoadingText.textContent =
+        message;
+
+
+    pdfLoading.classList.add(
+        "active"
+    );
+
+}
+
+
+/* =====================================================
+   HIDE PDF LOADING
+===================================================== */
+
+function hidePDFLoading() {
+
+    pdfLoading.classList.remove(
+        "active"
+    );
+
+}
+
+
+/* =====================================================
+   SHOW PDF ERROR
+===================================================== */
+
+function showPDFError(
+    message
+) {
+
+    hidePDFLoading();
+
+
+    pdfErrorMessage.textContent =
+        message;
+
+
+    pdfError.classList.add(
+        "active"
+    );
+
+}
+
+
+/* =====================================================
+   HIDE PDF ERROR
+===================================================== */
+
+function hidePDFError() {
+
+    pdfError.classList.remove(
+        "active"
+    );
+
+}
+
+
+/* =====================================================
+   UPDATE PDF CONTROLS
+===================================================== */
+
+function updatePDFControls() {
+
+    if (!currentPDF) {
+
+        return;
+
+    }
+
+
+    pdfPageInput.value =
+        currentPDFPage;
+
+
+    pdfTotalPages.textContent =
+        currentPDF.numPages;
+
+
+    pdfPrevButton.disabled =
+        currentPDFPage <= 1;
+
+
+    pdfNextButton.disabled =
+        currentPDFPage >=
+        currentPDF.numPages;
+
+
+    pdfZoomOut.disabled =
+        currentPDFScale <= 0.6;
+
+
+    pdfZoomIn.disabled =
+        currentPDFScale >= 2.5;
+
+}
+
+
+/* =====================================================
+   RENDER PDF PAGE
+===================================================== */
+
+async function renderPDFPage(
+    pageNumber
+) {
+
+    if (!currentPDF) {
+
+        return;
+
+    }
+
+
+    if (pdfRendering) {
+
+        pdfRenderPending =
+            pageNumber;
+
+        return;
+
+    }
+
+
+    pdfRendering = true;
+
+
+    try {
+
+        showPDFLoading(
+            "Rendering page " +
+            pageNumber +
+            "..."
+        );
+
+
+        const page =
+            await currentPDF.getPage(
+                pageNumber
+            );
+
+
+        const viewport =
+            page.getViewport({
+                scale:
+                    currentPDFScale
+            });
+
+
+        pdfCanvas.width =
+            viewport.width;
+
+
+        pdfCanvas.height =
+            viewport.height;
+
+
+        const renderContext = {
+
+            canvasContext:
+                pdfContext,
+
+            viewport:
+                viewport
+
+        };
+
+
+        await page.render(
+            renderContext
+        ).promise;
+
+
+        currentPDFPage =
+            pageNumber;
+
+
+        updatePDFControls();
+
+
+        hidePDFLoading();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "PDF page render error:",
+            error
+        );
+
+
+        showPDFError(
+            "Unable to render this page."
+        );
+
+    }
+
+    finally {
+
+        pdfRendering = false;
+
+
+        if (
+            pdfRenderPending !== null
+        ) {
+
+            const nextPage =
+                pdfRenderPending;
+
+
+            pdfRenderPending =
+                null;
+
+
+            renderPDFPage(
+                nextPage
+            );
+
+        }
+
+    }
+
+}
+
+
+/* =====================================================
+   OPEN PDF READER
+===================================================== */
+
+async function openPDFReader(
+    pdfUrl,
+    bookTitle
+) {
+
+    if (
+        !window.pdfjsLib
+    ) {
+
+        alert(
+            "The MalCert PDF reader could not load. Please refresh the page and try again."
+        );
+
+
+        return;
+
+    }
+
+
+    currentPDF =
+        null;
+
+
+    currentPDFPage =
+        1;
+
+
+    currentPDFScale =
+        1.25;
+
+
+    currentPDFUrl =
+        pdfUrl;
+
+
+    pdfBookTitle.textContent =
+        bookTitle ||
+        "MalCert Digital Library";
+
+
+    pdfReader.classList.add(
+        "active"
+    );
+
+
+    pdfReader.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+
+    document.body.style.overflow =
+        "hidden";
+
+
+    hidePDFError();
+
+
+    showPDFLoading(
+        "Opening book..."
+    );
+
+
+    try {
+
+        /*
+           Fetch the PDF into memory.
+
+           The PDF is then rendered by
+           PDF.js onto a canvas instead of
+           being handed to the browser's
+           native PDF viewer.
+        */
+
+        const response =
+            await fetch(
+                pdfUrl,
+                {
+                    method: "GET",
+                    credentials: "omit"
+                }
+            );
+
+
+        if (
+            !response.ok
+        ) {
+
+            throw new Error(
+                "Unable to access the PDF file."
+            );
+
+        }
+
+
+        const arrayBuffer =
+            await response.arrayBuffer();
+
+
+        if (
+            !arrayBuffer ||
+            arrayBuffer.byteLength === 0
+        ) {
+
+            throw new Error(
+                "The PDF file is empty."
+            );
+
+        }
+
+
+        showPDFLoading(
+            "Loading book pages..."
+        );
+
+
+        currentPDF =
+            await pdfjsLib
+                .getDocument({
+                    data:
+                        arrayBuffer
+                })
+                .promise;
+
+
+        pdfTotalPages.textContent =
+            currentPDF.numPages;
+
+
+        updatePDFControls();
+
+
+        await renderPDFPage(
+            1
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "PDF reader error:",
+            error
+        );
+
+
+        showPDFError(
+            error.message ||
+            "Unable to open this PDF."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   CLOSE PDF READER
+===================================================== */
+
+function closePDFReader() {
+
+    currentPDF =
+        null;
+
+
+    currentPDFUrl =
+        "";
+
+
+    pdfCanvas.width =
+        0;
+
+
+    pdfCanvas.height =
+        0;
+
+
+    pdfReader.classList.remove(
+        "active"
+    );
+
+
+    pdfReader.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    document.body.style.overflow =
+        "";
+
+
+    hidePDFLoading();
+
+
+    hidePDFError();
+
+}
+
+
+/* =====================================================
+   NEXT PAGE
+===================================================== */
+
+function nextPDFPage() {
+
+    if (
+        !currentPDF
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        currentPDFPage >=
+        currentPDF.numPages
+    ) {
+
+        return;
+
+    }
+
+
+    renderPDFPage(
+        currentPDFPage + 1
+    );
+
+}
+
+
+/* =====================================================
+   PREVIOUS PAGE
+===================================================== */
+
+function previousPDFPage() {
+
+    if (
+        !currentPDF
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        currentPDFPage <= 1
+    ) {
+
+        return;
+
+    }
+
+
+    renderPDFPage(
+        currentPDFPage - 1
+    );
+
+}
+
+
+/* =====================================================
+   GO TO PAGE
+===================================================== */
+
+function goToPDFPage(
+    pageNumber
+) {
+
+    if (
+        !currentPDF
+    ) {
+
+        return;
+
+    }
+
+
+    let page =
+        parseInt(
+            pageNumber,
+            10
+        );
+
+
+    if (
+        Number.isNaN(page)
+    ) {
+
+        page =
+            currentPDFPage;
+
+    }
+
+
+    page =
+        Math.max(
+            1,
+            Math.min(
+                page,
+                currentPDF.numPages
+            )
+        );
+
+
+    pdfPageInput.value =
+        page;
+
+
+    renderPDFPage(
+        page
+    );
+
+}
+
+
+/* =====================================================
+   ZOOM IN
+===================================================== */
+
+function zoomInPDF() {
+
+    if (
+        !currentPDF
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        currentPDFScale >= 2.5
+    ) {
+
+        return;
+
+    }
+
+
+    currentPDFScale +=
+        0.15;
+
+
+    renderPDFPage(
+        currentPDFPage
+    );
+
+}
+
+
+/* =====================================================
+   ZOOM OUT
+===================================================== */
+
+function zoomOutPDF() {
+
+    if (
+        !currentPDF
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        currentPDFScale <= 0.6
+    ) {
+
+        return;
+
+    }
+
+
+    currentPDFScale -=
+        0.15;
+
+
+    currentPDFScale =
+        Math.max(
+            0.6,
+            currentPDFScale
+        );
+
+
+    renderPDFPage(
+        currentPDFPage
+    );
+
+}
+
+
+/* =====================================================
+   PDF READER BUTTON EVENTS
+===================================================== */
+
+pdfPrevButton.addEventListener(
+    "click",
+    previousPDFPage
+);
+
+
+pdfNextButton.addEventListener(
+    "click",
+    nextPDFPage
+);
+
+
+pdfZoomIn.addEventListener(
+    "click",
+    zoomInPDF
+);
+
+
+pdfZoomOut.addEventListener(
+    "click",
+    zoomOutPDF
+);
+
+
+pdfCloseButton.addEventListener(
+    "click",
+    closePDFReader
+);
+
+
+pdfPageInput.addEventListener(
+    "change",
+    function() {
+
+        goToPDFPage(
+            this.value
+        );
+
+    }
+);
+
+
+/* =====================================================
+   PDF KEYBOARD CONTROLS
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            !pdfReader.classList.contains(
+                "active"
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        /*
+           ESC closes the reader.
+        */
+
+        if (
+            event.key ===
+            "Escape"
+        ) {
+
+            event.preventDefault();
+
+            closePDFReader();
+
+            return;
+
+        }
+
+
+        /*
+           Arrow navigation.
+        */
+
+        if (
+            event.key ===
+            "ArrowRight"
+        ) {
+
+            event.preventDefault();
+
+            nextPDFPage();
+
+            return;
+
+        }
+
+
+        if (
+            event.key ===
+            "ArrowLeft"
+        ) {
+
+            event.preventDefault();
+
+            previousPDFPage();
+
+            return;
+
+        }
+
+
+        /*
+           Prevent common save/print/download
+           shortcuts while inside reader.
+        */
+
+        if (
+            (
+                event.ctrlKey ||
+                event.metaKey
+            ) &&
+            [
+                "s",
+                "p",
+                "u"
+            ].includes(
+                event.key.toLowerCase()
+            )
+        ) {
+
+            event.preventDefault();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   DISABLE RIGHT CLICK IN PDF READER
+===================================================== */
+
+pdfReader.addEventListener(
+    "contextmenu",
+    function(event) {
+
+        event.preventDefault();
+
+    }
+);
+
+
+/* =====================================================
    LOAD MATERIALS FROM SUPABASE
 ===================================================== */
 
 async function loadLibraryMaterials() {
 
     const subjectBox =
-        document.getElementById("subjects");
+        document.getElementById(
+            "subjects"
+        );
 
 
     subjectBox.innerHTML = `
@@ -669,12 +2364,6 @@ function getAgricultureForm(book) {
         );
 
 
-    /*
-       FIRST:
-       Use the database class/form field
-       if it contains Form 3 or Form 4.
-    */
-
     if (
         bookClass === "form 3" ||
         bookClass === "3"
@@ -694,11 +2383,6 @@ function getAgricultureForm(book) {
 
     }
 
-
-    /*
-       SECOND:
-       Detect from title.
-    */
 
     if (
         /\bform\s*3\b/i.test(title) ||
@@ -720,24 +2404,6 @@ function getAgricultureForm(book) {
     }
 
 
-    /*
-       THIRD:
-       Detect from file path.
-
-       Examples:
-
-       Agriculture_Excel_&_Succeed_Book_3.pdf
-       Agriculture_Excel_&_Succeed_Book_4.pdf
-
-       Strides_in_Agriculture_Book_3.pdf
-       Strides_in_Agriculture_Book_4.pdf
-
-       Agriculture_Arise_Book_3.pdf
-       Agriculture_Arise_Book_4.pdf
-
-       Agriculture_Achievers_Book_4.pdf
-    */
-
     if (
         /book[_\s-]*3\b/i.test(filePath)
     ) {
@@ -755,11 +2421,6 @@ function getAgricultureForm(book) {
 
     }
 
-
-    /*
-       Also support simple "3" or "4"
-       near the end of the filename.
-    */
 
     if (
         /[_\s-]3\.pdf$/i.test(filePath)
@@ -788,7 +2449,10 @@ function getAgricultureForm(book) {
    CHECK WHETHER BOOK BELONGS TO FORM
 ===================================================== */
 
-function belongsToForm(book, form) {
+function belongsToForm(
+    book,
+    form
+) {
 
     const requestedForm =
         normalizeText(form);
@@ -803,16 +2467,6 @@ function belongsToForm(book, form) {
         );
 
 
-    /*
-       CHANCO
-
-       Chanco is available for BOTH
-       Form 3 and Form 4.
-
-       We deliberately ignore the
-       class field for Chanco.
-    */
-
     if (
         isChancoBook(book)
     ) {
@@ -825,16 +2479,6 @@ function belongsToForm(book, form) {
     }
 
 
-    /*
-       PURE AND APPLIED
-
-       Pure and Applied is available
-       for BOTH Form 3 and Form 4.
-
-       We deliberately ignore the
-       class field for this book too.
-    */
-
     if (
         isPureAndAppliedBook(book)
     ) {
@@ -846,15 +2490,6 @@ function belongsToForm(book, form) {
 
     }
 
-
-    /*
-       AGRICULTURE
-
-       Agriculture MUST be separated.
-
-       Book 3 -> Form 3
-       Book 4 -> Form 4
-    */
 
     if (
         isAgricultureBook(book)
@@ -871,13 +2506,6 @@ function belongsToForm(book, form) {
     }
 
 
-    /*
-       NORMAL BOOKS
-
-       Normal books continue using
-       their class/form value.
-    */
-
     if (
         bookClass === requestedForm
     ) {
@@ -886,11 +2514,6 @@ function belongsToForm(book, form) {
 
     }
 
-
-    /*
-       Also support books marked
-       as Form 3 and 4.
-    */
 
     const bothForms = [
 
@@ -961,10 +2584,6 @@ function getSubject(book) {
         );
 
 
-    /*
-       Agriculture fallback.
-    */
-
     if (
         title.includes("agriculture") ||
         filePath.includes("agriculture") ||
@@ -975,10 +2594,6 @@ function getSubject(book) {
 
     }
 
-
-    /*
-       Additional Mathematics fallback.
-    */
 
     if (
         title.includes("additional") &&
@@ -999,7 +2614,9 @@ function getSubject(book) {
    REMOVE DUPLICATE BOOKS
 ===================================================== */
 
-function removeDuplicateBooks(books) {
+function removeDuplicateBooks(
+    books
+) {
 
     const result = [];
 
@@ -1022,11 +2639,6 @@ function removeDuplicateBooks(books) {
                     ""
                 );
 
-
-            /*
-               Prefer the storage file path
-               as the unique identifier.
-            */
 
             const key =
                 filePath ||
@@ -1106,11 +2718,6 @@ async function showForm(form) {
     `;
 
 
-    /*
-       Load materials if they haven't
-       been loaded yet.
-    */
-
     if (
         allMaterials.length === 0
     ) {
@@ -1159,14 +2766,6 @@ async function showForm(form) {
     );
 
 
-    /*
-       Remove duplicates.
-
-       Agriculture books are already
-       separated by form before this
-       function is called.
-    */
-
     Object.keys(subjects).forEach(
         function(subject) {
 
@@ -1196,7 +2795,9 @@ async function showForm(form) {
    LOAD SUBJECT CARDS
 ===================================================== */
 
-function loadSubjects(subjects) {
+function loadSubjects(
+    subjects
+) {
 
     const subjectBox =
         document.getElementById(
@@ -1331,11 +2932,6 @@ function showBooks(
 
     bookBox.innerHTML = "";
 
-
-    /*
-       Make absolutely sure duplicate
-       records cannot appear.
-    */
 
     books =
         removeDuplicateBooks(
@@ -1565,7 +3161,9 @@ function viewBook(book) {
         "";
 
 
-    if (!filePath) {
+    if (
+        !filePath
+    ) {
 
         alert(
             "This book does not have a PDF file attached yet."
@@ -1606,25 +3204,33 @@ function viewBook(book) {
             "Unable to create the PDF URL."
         );
 
+
         return;
 
     }
 
 
     console.log(
-        "Opening PDF:",
+        "Opening PDF inside MalCert reader:",
         data.publicUrl
     );
 
 
     /*
-       VIEW ONLY.
+       IMPORTANT:
+
+       We NO LONGER use:
+
+       window.open()
+
+       The PDF is now loaded into
+       the MalCert PDF reader.
     */
 
-    window.open(
+    openPDFReader(
         data.publicUrl,
-        "_blank",
-        "noopener,noreferrer"
+        book.title ||
+        "MalCert Digital Library"
     );
 
 }
